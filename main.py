@@ -43,9 +43,9 @@ def default_test(message):
 @bot.message_handler(commands=['build'])
 def default_test(message):
     keyboard = types.InlineKeyboardMarkup()
-    work_button = types.InlineKeyboardButton(text="Построить N за 10 монет", callback_data="N")
+    work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
     keyboard.add(work_button)
-    bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
+    bot.send_message(message.chat.id, "Построить N за 10 монет", reply_markup=keyboard)	
 
 	
 @bot.callback_query_handler(func=lambda call: True)
@@ -77,7 +77,8 @@ def callback_inline(call):
 			jon["build"]["n"]=1
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
-			cursor2.execute(f"UPDATE users SET date = {jon} WHERE user_id={userid}")
+			jon2=json.dumps(jon)
+			cursor2.execute(f"UPDATE users SET date = {jon2} WHERE user_id={userid}")
 			
 			conn.commit()
 			conn.close()
