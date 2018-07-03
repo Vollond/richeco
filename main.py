@@ -30,7 +30,7 @@ def start(message):
 	conn.close()
 	bot.send_message(chatid, 'pong, ' + message.from_user.first_name)
 
-	
+
 @bot.message_handler(commands=['new'])
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
