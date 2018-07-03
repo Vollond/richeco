@@ -70,11 +70,10 @@ def callback_inline(call):
 			bot.send_message(call.message.chat.id, results2)
 			str2 = (f"Перейти на + {results2}")
 			bot.send_message(call.message.chat.id, str2)
-			keyboard = types.InlineKeyboardMarkup()
+			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
-			keyboard.add(work_button)			
-			bot.edit_message_text(chat_id=call.message.chat.id,  message_id=call.message.message_id, text=str2, reply_markup=keyboard)
-
+			keyboard2.add(work_button)
+			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 
 	
 
