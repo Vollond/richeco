@@ -64,7 +64,7 @@ def callback_inline(call):
 			cursor2.execute(f"select coin from users where user_id={userid}")
 			results2 = cursor2.fetchall()
 			''.join(str(e) for e in results2)
-			results = b
+			results = results2
 			conn.commit()
 			conn.close()
 			print (results)
