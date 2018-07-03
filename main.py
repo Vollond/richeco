@@ -17,7 +17,9 @@ def start(message):
 
 @bot.message_handler(commands=['ping'])
 def start(message):
-    bot.send_message(message.chat.id, 'pong, ' + message.from_user.first_name)
+	bot.send_message(message.chat.id, 'pong, ' + message.from_user.first_name)
+	bot.send_message(message.chat.id, 'pong, ' + message.from.id)
+
 
 @bot.message_handler(commands=['work'])
 def start(message):
@@ -35,7 +37,7 @@ def start(message):
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute("insert into users (name,coin) values("message.from.id",'10')")
+	cursor.execute("insert into users (name,coin) values("",'10')")
 	conn.commit()
 	conn.close()
 	bot.reply_to(message, 'pong, ' + message.from_user.first_name)
