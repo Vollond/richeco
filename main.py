@@ -63,11 +63,11 @@ def callback_inline(call):
 			conn.commit()
 			cursor.execute(f"select coin from users where user_id={userid}")
 			results = cursor.fetchall()
+			conn.close()
 			print (results)
 			bot.send_message(call.message.chat.id, results)
 			str = "Перейти на" + results
-			bot.send_message(call.message.chat.id, str)	
-			conn.close()
+			bot.send_message(call.message.chat.id, str)
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str, callback_data="test")
 			keyboard2.add(work_button)			
