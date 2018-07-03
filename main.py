@@ -80,8 +80,10 @@ def callback_inline(call):
 			jon=json.dumps(jon)
 			#jon = json.loads(jon)
 
-			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
-			
+			#cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+			cursor2.execute(f"UPDATE users SET date = '["build"]["n"] + 1' WHERE user_id={userid}")
+			cursor2.execute(f"UPDATE users SET coin = coin - 10 WHERE user_id={userid}")
+
 			conn.commit()
 			conn.close()
 
