@@ -23,19 +23,6 @@ def start(message):
 	bot.send_message(message.chat.id, 'pong, ' + message.from_user.id)
 
 
-@bot.message_handler(commands=['work'])
-def start(message):
-	userid = message.from_user.id
-	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-	cursor = conn.cursor()
-	cursor.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
-	conn.commit()
-	cursor.execute(f"select coin from users where user_id={userid}")
-	results = cursor.fetchall()
-	conn.close()
-	bot.send_message(message.chat.id, results)
-
-
 @bot.message_handler(commands=['new'])
 def start(message):
 	userid = message.from_user.id
@@ -46,39 +33,53 @@ def start(message):
 	conn.close()
 	bot.reply_to(message, 'pong, ' + message.from_user.first_name)
 
-@bot.message_handler(commands=['work2'])
+@bot.message_handler(commands=['work'])
 def default_test(message):
     keyboard = types.InlineKeyboardMarkup()
-    work_button = types.InlineKeyboardButton(text="Перейти на Яндекс", callback_data="test")
+    work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="test")
     keyboard.add(work_button)
     bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
 	
+@bot.message_handler(commands=['build'])
+def default_test(message):
+    keyboard = types.InlineKeyboardMarkup()
+    work_button = types.InlineKeyboardButton(text="Построить N за 10 монет", callback_data="N")
+    keyboard.add(work_button)
+    bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
+
 	
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 	if call.message:
 		if call.data == "test":
 			userid = call.from_user.id
-			print (userid)
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
 			cursor2.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
 			cursor2.execute(f"select coin from users where user_id={userid}")
 			results2 = cursor2.fetchall()
 			results2 = ''.join(str(e) for e in results2)
-			#results2 = (str(results2))
 			results2 = re.findall(r'\d*\d', (str(results2)))
 			results2=results2[0]
-		#	print (results3)
 			conn.commit()
 			conn.close()
-			print (results2)
-			#print (float(str(results2)))
 			str2 = (f"$ = {results2}")
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
 			keyboard2.add(work_button)
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
+		if call.data == "N":
+			from collections import defaultdict
+			_default_data = lambda: defaultdict(_default_data)
+			jon = _default_data()
+			import json
+			jon["build"]["n"]=1
+			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+			cursor2 = conn.cursor()
+			cursor2.execute(f"UPDATE users SET date = {jon} WHERE user_id={userid}")
+			
+			conn.commit()
+			conn.close()
 
 	
 
