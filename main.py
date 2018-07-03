@@ -63,12 +63,13 @@ def callback_inline(call):
 			cursor2.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
 			cursor2.execute(f"select coin from users where user_id={userid}")
 			results2 = cursor2.fetchall()
-			results2.join(results2)
+			str2=""
+			str3=str2.join(results2)
 			conn.commit()
 			conn.close()
 			print (results2)
 			bot.send_message(call.message.chat.id, results2)
-			str = "Перейти на" + results2
+			str = "Перейти на" + str3
 			bot.send_message(call.message.chat.id, str)
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str, callback_data="test")
