@@ -27,3 +27,5 @@ print (stats["health"]["hp"])
 print (json.dumps(data, indent=2))
 print (json.dumps(stats, indent=5))
 print (stats["exempls"]["head"])
+
+
