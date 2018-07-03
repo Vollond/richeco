@@ -17,7 +17,7 @@ def start(message):
 
 @bot.message_handler(commands=['ping'])
 def start(message):
-    bot.send_message(chatid, 'pong, ' + message.from_user.first_name)
+    bot.send_message(message.chat.id, 'pong, ' + message.from_user.first_name)
 
 @bot.message_handler(commands=['work'])
 def start(message):
@@ -28,7 +28,7 @@ def start(message):
 	cursor.execute("select coin from users where name='nit'")
 	results = cursor.fetchall()
 	conn.close()
-	bot.send_message(chatid, results)
+	bot.send_message(message.chat.id, results)
 
 
 @bot.message_handler(commands=['new'])
