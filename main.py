@@ -10,7 +10,6 @@ DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
 server = Flask(__name__)
-userid = message.from_user.id
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
@@ -23,9 +22,10 @@ def start(message):
 
 @bot.message_handler(commands=['work'])
 def start(message):
+	userid = message.from_user.id
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name='nit'")
+	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name={userid}")
 	conn.commit()
 	cursor.execute(f"select coin from users where name={userid}")
 	results = cursor.fetchall()
@@ -35,6 +35,7 @@ def start(message):
 
 @bot.message_handler(commands=['new'])
 def start(message):
+	userid = message.from_user.id
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	cursor.execute("insert into users (name,coin) values({userid},'10')")
