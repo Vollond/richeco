@@ -63,7 +63,7 @@ def callback_inline(call):
 			conn.commit()
 			cursor.execute(f"select coin from users where user_id={userid}")
 			results = cursor.fetchall()
-			bot.send_message(message.chat.id, results)
+			bot.send_message(call.message.chat.id, results)
 			str = "Перейти на" + results
 			bot.send_message(call.message.chat.id, str)	
 			conn.close()
