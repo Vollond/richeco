@@ -2,6 +2,7 @@ import telebot
 import os
 from flask import Flask, request
 import psycopg2
+from telebot import types
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
