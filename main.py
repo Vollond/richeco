@@ -69,7 +69,7 @@ def callback_inline(call):
 			conn.close()
 			print (results)
 			bot.send_message(call.message.chat.id, results)
-			str2 = "Перейти на" + results
+			str2 = (f"Перейти на@ + {results}")
 			bot.send_message(call.message.chat.id, str2)
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
