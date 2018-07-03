@@ -22,8 +22,7 @@ def start(message):
 @bot.message_handler(commands=['new'])
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-	cursor.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
-	insert into users (name,coin) values('nit','122'
+	cursor.execute("insert into users (name,coin) values('nit','122')")
 	conn.commit()
     bot.reply_to(message, 'pong, ' + message.from_user.first_name)		
 	
