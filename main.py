@@ -17,7 +17,7 @@ def start(message):
 
 @bot.message_handler(commands=['ping'])
 def start(message):
-    bot.reply_to(message, 'pong, ' + message.from_user.first_name)
+    bot.send_message(chatid, 'pong, ' + message.from_user.first_name)
 
 @bot.message_handler(commands=['work'])
 def start(message):
@@ -25,14 +25,17 @@ def start(message):
 	cursor = conn.cursor()
 	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name='nit'")
 	conn.commit()
+	cursor.execute("select coin from users where name='nit'")
+	results = cursor.fetchall()
 	conn.close()
-	bot.reply_to(message, 'pong, ')
+	bot.send_message(chatid, 'pong, ' + message.from_user.first_name)
 
+	
 @bot.message_handler(commands=['new'])
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute("insert into users (name,coin) values('nit','122')")
+	cursor.execute("insert into users (name,coin) values('nit','10')")
 	conn.commit()
 	conn.close()
 	bot.reply_to(message, 'pong, ' + message.from_user.first_name)
