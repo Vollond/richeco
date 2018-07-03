@@ -27,7 +27,8 @@ def start(message):
 	cursor = conn.cursor()
 	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name='nit'")
 	conn.commit()
-	cursor.execute("select coin from users where name="message.from.id"")
+	userid = message.from.id
+	cursor.execute(f"select coin from users where name={userid}")
 	results = cursor.fetchall()
 	conn.close()
 	bot.send_message(message.chat.id, results)
