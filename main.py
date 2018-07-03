@@ -69,6 +69,7 @@ def callback_inline(call):
 			keyboard2.add(work_button)
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
+			userid = call.from_user.id
 			from collections import defaultdict
 			_default_data = lambda: defaultdict(_default_data)
 			jon = _default_data()
