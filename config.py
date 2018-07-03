@@ -1,7 +1,7 @@
 import os
 
 # webhook
-URL = os.environ.get('URL')
+URL = os.environ.get('https://richeco.herokuapp.com/')
 PORT = int(os.environ.get('PORT', '5000'))
 
 # telegram
