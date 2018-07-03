@@ -23,7 +23,7 @@ def start(message):
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute("UPDATE users SET `coin` = `coin` + 1 WHERE name='nit'")
+	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name='nit'")
 	conn.commit()
 	conn.close()
 	bot.reply_to(message, 'pong, ')
