@@ -67,7 +67,7 @@ def callback_inline(call):
 			results2 = cursor2.fetchall()
 			''.join(str(e) for e in results2)
 			results2 = (str(results2))
-			results2 = re.results2(r'\d*\d', results2)
+			results2 = re.findall(r'\d*\d', results2)
 			conn.commit()
 			conn.close()
 			print (results2)
