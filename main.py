@@ -65,9 +65,9 @@ def callback_inline(call):
 			results = cursor.fetchall()
 			conn.close()
 			keyboard = types.InlineKeyboardMarkup()
-			work_button = types.InlineKeyboardButton(text="Перейти на {results}", callback_data="test")
+			work_button = types.InlineKeyboardButton(text=f"Перейти на {results}", callback_data="test")
 			keyboard.add(work_button)			
-			bot.edit_message_text(chat_id=call.message.chat.id,  message_id=call.message.message_id, text="Работать {results}", reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id,  message_id=call.message.message_id, text=f"Работать {results}", reply_markup=keyboard)
 
 
 	
