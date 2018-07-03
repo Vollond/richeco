@@ -3,6 +3,8 @@ import os
 from flask import Flask, request
 import psycopg2
 from telebot import types
+import re
+
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -64,10 +66,12 @@ def callback_inline(call):
 			cursor2.execute(f"select coin from users where user_id={userid}")
 			results2 = cursor2.fetchall()
 			''.join(str(e) for e in results2)
+			results2 = (str(results2))
+			results2 = re.results2(r'\d*\d', results2)
 			conn.commit()
 			conn.close()
 			print (results2)
-			print (float(str(results2)))
+			print (float(results2))
 			str2 = (f"Перейти на + {results2}")
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
