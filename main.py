@@ -18,7 +18,7 @@ def start(message):
 @bot.message_handler(commands=['ping'])
 def start(message):
     bot.reply_to(message, 'pong, ' + message.from_user.first_name)
-	
+
 @bot.message_handler(commands=['new'])
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
