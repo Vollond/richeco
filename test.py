@@ -1,8 +1,8 @@
 import re
  
-silly_string = "the c12312312at in the hat"
-pattern = "\d*\d"
-a = re.findall(pattern, silly_string)
-a = ''.join(str(e) for e in a)
-
-print(a) # ['the', 'the']
+results2 = "(180,)"
+results2 = ''.join(str(e) for e in results2)
+#results2 = (str(results2))
+results2 = re.findall(r'\d*\d', (str(results2)))
+			
+print(results2[0]) # ['the', 'the']

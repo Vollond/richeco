@@ -68,6 +68,7 @@ def callback_inline(call):
 			results2 = ''.join(str(e) for e in results2)
 			#results2 = (str(results2))
 			results2 = re.findall(r'\d*\d', (str(results2)))
+			results2=results2[0]
 		#	print (results3)
 			conn.commit()
 			conn.close()
