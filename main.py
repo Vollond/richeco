@@ -25,7 +25,7 @@ def start(message):
 	cursor = conn.cursor()
 	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name='nit'")
 	conn.commit()
-	cursor.execute("select coin from users where name='nit'")
+	cursor.execute("select coin from users where name="message.from.id"")
 	results = cursor.fetchall()
 	conn.close()
 	bot.send_message(message.chat.id, results)
@@ -35,7 +35,7 @@ def start(message):
 def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute("insert into users (name,coin) values('nit','10')")
+	cursor.execute("insert into users (name,coin) values("message.from.id",'10')")
 	conn.commit()
 	conn.close()
 	bot.reply_to(message, 'pong, ' + message.from_user.first_name)
