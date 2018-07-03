@@ -77,10 +77,10 @@ def callback_inline(call):
 			jon["build"]["n"]=1
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
-			jon2=json.dumps(jon)
-			jon3 = json.loads(jon2)
+			#jon=json.dumps(jon)
+			jon = json.loads(jon)
 
-			cursor2.execute(f"UPDATE users SET date = {jon3} WHERE user_id={userid}")
+			cursor2.execute(f"UPDATE users SET date = {jon} WHERE user_id={userid}")
 			
 			conn.commit()
 			conn.close()
