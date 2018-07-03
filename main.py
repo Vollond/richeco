@@ -14,6 +14,12 @@ def start(message):
 def echo_message(message):
     bot.reply_to(message, message.text)
 
+@bot.message_handler(commands=['ping'])
+def start(message):
+    bot.reply_to(message, 'pong, ' + message.from_user.first_name)	
+
+	
+
 @server.route("/bot", methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
