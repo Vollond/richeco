@@ -53,10 +53,10 @@ def default_test(message):
 	
 	
 @bot.callback_query_handler(func=lambda call: True)
-def callback_inline(call,message):
+def callback_inline(call):
 	if call.message:
 		if call.data == "test":
-			userid = message.from_user.id
+			userid = call.from_user.id
 			print (userid)
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
