@@ -10,6 +10,8 @@ name = "pypi"
 requests = "*"
 python-telegram-bot = "*"
 telebot  = "*"
+psycopg2 = "*"
+flask = "*"
 
 
 [dev-packages]
