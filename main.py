@@ -18,7 +18,7 @@ def start(message):
 @bot.message_handler(commands=['ping'])
 def start(message):
 	bot.send_message(message.chat.id, 'pong, ' + message.from_user.first_name)
-	bot.send_message(message.chat.id, 'pong, ' + message.from.id)
+	bot.send_message(message.chat.id, 'pong, ' + message.from_user.id)
 
 
 @bot.message_handler(commands=['work'])
@@ -27,7 +27,7 @@ def start(message):
 	cursor = conn.cursor()
 	cursor.execute("UPDATE users SET coin = coin + 1 WHERE name='nit'")
 	conn.commit()
-	userid = message.from.id
+	userid = message.from_user.id
 	cursor.execute(f"select coin from users where name={userid}")
 	results = cursor.fetchall()
 	conn.close()
