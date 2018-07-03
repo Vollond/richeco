@@ -67,7 +67,6 @@ def callback_inline(call):
 			conn.commit()
 			conn.close()
 			print (results2)
-			print (e)
 			print (float(str(results2)))
 			str2 = (f"Перейти на + {results2}")
 			keyboard2 = types.InlineKeyboardMarkup()
