@@ -13,8 +13,6 @@ telebot  = "*"
 psycopg2 = "*"
 flask = "*"
 PyTelegramBotAPI = "*"
-gunicorn = "*"
-
 
 
 [dev-packages]
