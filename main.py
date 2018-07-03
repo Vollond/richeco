@@ -46,15 +46,16 @@ def start(message):
 @bot.message_handler(commands=['work2'])
 def default_test(message):
     keyboard = types.InlineKeyboardMarkup()
-    work_button = types.InlineKeyboardButton(text="Перейти на Яндекс")
+    work_button = types.InlineKeyboardButton(text="Перейти на Яндекс", callback_data="test")
     keyboard.add(work_button)
     bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
 	
 	
-@bot.message_handler(func=lambda message: True, content_types=['text'])
-def echo_message(message):
-    bot.reply_to(message, message.text)
-
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+	if call.message:
+		if call.data == "test":
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
 
 
 	
