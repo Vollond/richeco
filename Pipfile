@@ -12,6 +12,7 @@ python-telegram-bot = "*"
 telebot  = "*"
 psycopg2 = "*"
 flask = "*"
+PyTelegramBotAPI = "*"
 
 
 [dev-packages]
