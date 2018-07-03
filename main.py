@@ -56,7 +56,7 @@ def default_test(message):
 def callback_inline(call):
 	if call.message:
 		if call.data == "test":
-			userid = message.from_user.id
+			userid = call.message.from_user.id
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor = conn.cursor()
 			cursor.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
