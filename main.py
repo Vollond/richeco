@@ -74,7 +74,7 @@ def callback_inline(call):
 			conn.close()
 			print (results2)
 			#print (float(str(results2)))
-			str2 = (f"Перейти на + {results2}")
+			str2 = (f"$ = {results2}")
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
 			keyboard2.add(work_button)
