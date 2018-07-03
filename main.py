@@ -58,11 +58,11 @@ def callback_inline(call):
 		if call.data == "test":
 			userid = call.message.from_user.id
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-			cursor = conn.cursor()
-			cursor.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
+			cursor2 = conn.cursor()
+			cursor2.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
 			conn.commit()
-			cursor.execute(f"select coin from users where user_id={userid}")
-			results = cursor.fetchall()
+			cursor2.execute(f"select coin from users where user_id={userid}")
+			results = cursor2.fetchall()
 			conn.close()
 			print (results)
 			bot.send_message(call.message.chat.id, results)
