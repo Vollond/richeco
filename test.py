@@ -13,7 +13,7 @@ data["configuration"]["ssh"]["password"] = "some"
 stats = _default_data()
 stats["health"]["hp"] = 11
 stats["health"]["mana"] = 22
-
+stats["health"]["mana"] = stats["health"]["mana"] + 1
 stats["exempls"]["head"] = "w"
 stats["exempls"]["legs"] = "l"
 stats["exempls"]["loolz"] = "123"
