@@ -1,6 +1,11 @@
 import telebot
 import os
 from flask import Flask, request
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+
 
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
@@ -13,6 +18,14 @@ def start(message):
 @bot.message_handler(commands=['ping'])
 def start(message):
     bot.reply_to(message, 'pong, ' + message.from_user.first_name)	
+	
+@bot.message_handler(commands=['new'])
+def start(message):
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+	cursor.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
+	insert into users (name,coin) values('nit','122'
+	conn.commit()
+    bot.reply_to(message, 'pong, ' + message.from_user.first_name)		
 	
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
