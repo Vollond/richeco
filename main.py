@@ -63,8 +63,7 @@ def callback_inline(call):
 			cursor2.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
 			cursor2.execute(f"select coin from users where user_id={userid}")
 			results2 = cursor2.fetchall()
-			str2=""
-			str3=str2.join(results2)
+			str3="".join(results2)
 			conn.commit()
 			conn.close()
 			print (results2)
