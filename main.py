@@ -83,6 +83,7 @@ def callback_inline(call):
 			#cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 			cursor2.execute(f"select date from users where user_id={userid}")
 			jonew = cursor2.fetchall()
+			jonew = jonew[0]
 			print(jonew)
 			jonew = json.loads(jonew)
 
