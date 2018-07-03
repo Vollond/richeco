@@ -56,7 +56,15 @@ def default_test(message):
 def callback_inline(call):
 	if call.message:
 		if call.data == "test":
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
+			userid = message.from_user.id
+			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+			cursor = conn.cursor()
+			cursor.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
+			conn.commit()
+			cursor.execute(f"select coin from users where user_id={userid}")
+			results = cursor.fetchall()
+			conn.close()
+			bot.edit_message_text(chat_id=call.message.chat.id, f"Работать {results}", reply_markup=keyboard)
 
 
 	
