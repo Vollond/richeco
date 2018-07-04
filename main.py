@@ -49,7 +49,28 @@ def default_test(message):
 
 @bot.message_handler(commands=['me'])
 def default_test(message):
-    bot.send_message(message.chat.id, "Построить N за 10 монет\n asdasdas \n sadasdasdas")	
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+	cursor = conn.cursor()
+	cursor.execute(f"select coin from users where user_id={userid}")
+	coin = cursor.fetchall()
+	coin = ''.join(str(e) for e in coin)
+	coin = re.findall(r'\d*\d', (str(coin)))
+	coin=coin[0]
+	cursor2 = conn.cursor()
+	cursor2.execute(f"select coin from users where user_id={userid}")	
+	cursor2.execute(f"select date from users where user_id={userid}")
+	jonew = cursor2.fetchall()
+	jonew = jonew[0][0]
+	jonew["build"]["n"] = jonew["build"]["n"] +1
+	n_count = jonew["build"]["n"]	
+	
+	
+	conn.commit()
+	conn.close()
+
+
+
+    bot.send_message(message.chat.id, "Монет: coin \n\n Постройки: \n N = n_count")	
 
 	
 @bot.callback_query_handler(func=lambda call: True)
