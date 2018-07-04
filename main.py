@@ -86,7 +86,6 @@ def callback_inline(call):
 			jon=json.dumps(jonew)
 			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 			cursor2.execute(f"UPDATE users SET coin = coin - 10 WHERE user_id={userid}")
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
 			keyboard = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
 			keyboard.add(work_button)
