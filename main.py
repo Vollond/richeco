@@ -32,7 +32,7 @@ def start(message):
 	jon = _default_data()
 	jon["build"]["n"]=1
 	jon=json.dumps(jon)
-	cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
 	conn.close()
 
