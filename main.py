@@ -64,6 +64,11 @@ def default_test(message):
 	n_count =  f_builds ('?',userid)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
 
+@bot.message_handler(commands=['research'])
+def default_test(message):
+	userid = message.from_user.id
+	bot.send_message(message.chat.id, (f"◾️◾️◾️◽️◽️◽️◽️◽️◽️"))
+	bot.edit_message_text(message.chat.id, call.message.message_id+1, text=(f"◾️◾️◾◾️◾️◾️◾️◾️◾️◽️"))
 
 
 @bot.callback_query_handler(func=lambda call: True)
