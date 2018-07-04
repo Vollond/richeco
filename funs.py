@@ -27,7 +27,7 @@ def f_coin (op,userid, change):
 	if op == '+':
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cursor = conn.cursor()
-		cursor2.execute(f"UPDATE users SET coin = coin + {change} WHERE user_id={userid}")	
+		cursor.execute(f"UPDATE users SET coin = coin + {change} WHERE user_id={userid}")	
 		conn.commit()
 		conn.close()
 	
