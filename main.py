@@ -175,16 +175,17 @@ def callback_inline(call):
 				f_builds ('+',userid,"workers", +5)
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 				cursor2 = conn.cursor()
-				new_coin = round(random.normalvariate(10, 3))
+				new_coin = roundup((random.normalvariate(10, 30))
 				cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
 				conn.commit()
 				conn.close()
 				bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
-			
-				
-				
+		
+		
+def roundup(x):
+	return x if x % 10 == 0 else x + 10 - x % 10						
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
