@@ -47,7 +47,7 @@ def start(message):
 def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="work")
-	exped_button = types.InlineKeyboardButton(text="Отправить рабочих в експедицию", callback_data="exped")
+	exped_button = types.InlineKeyboardButton(text="Отправить рабочих в експедицию 5 рабочих", callback_data="exped")
 	keyboard.add(work_button)
 	keyboard.add(exped_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
@@ -164,21 +164,25 @@ def callback_inline(call):
 
 			
 		if call.data == "exped":
-			bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
-			time.sleep(15) 
-			userid = call.from_user.id
-			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-			cursor2 = conn.cursor()
-			new_coin = 10
-			cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
-			conn.commit()
-			conn.close()
-			bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
-
-
-		
-		
-	
+			workers_count=f_builds ('?',userid,"workers", 0)
+			if (workers_count >= 5):
+				f_builds ('+',userid,"workers", -5)
+				bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
+				time.sleep(15) 
+				f_builds ('+',userid,"workers", +5)
+				userid = call.from_user.id
+				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+				cursor2 = conn.cursor()
+				new_coin = 10
+				cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
+				conn.commit()
+				conn.close()
+				bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+			
+				
+				
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
