@@ -84,12 +84,13 @@ def callback_inline(call):
 			jonew["build"]["n"] = jonew["build"]["n"] +1
 			n_count = jonew["build"]["n"]
 			jon=json.dumps(jonew)
+			n_cost=n_count*n_count
 			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
-			cursor2.execute(f"UPDATE users SET coin = coin - 10 WHERE user_id={userid}")
+			cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
 			keyboard = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
 			keyboard.add(work_button)
-			bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Бдыщь",reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за n_cost?"),reply_markup=keyboard)
 
 			conn.commit()
 			conn.close()
