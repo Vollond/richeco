@@ -73,7 +73,7 @@ def default_test(message):
 	conn.commit()
 	conn.close()
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
-	coin2 =  f_coin (?,userid)
+	coin2 =  f_coin ('?',userid)
 	bot.send_message(message.chat.id, (f"Монет: {coin2} \n\n Постройки: \n N = {n_count}"))
 
 

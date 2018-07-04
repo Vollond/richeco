@@ -14,7 +14,7 @@ bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 server = Flask(__name__)
 
 def f_coin (op,userid)
-	if op = ?:
+	if op = '?':
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cursor = conn.cursor()
 		cursor.execute(f"select coin from users where user_id={userid}")
