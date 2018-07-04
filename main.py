@@ -126,7 +126,7 @@ def callback_inline(call):
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
 				keyboard.add(work_button)
-				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} N /nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 				
@@ -141,7 +141,7 @@ def callback_inline(call):
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="workers")
 				keyboard.add(work_button)
-				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} рабочих /nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 				
@@ -158,7 +158,7 @@ def callback_inline(call):
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="warrior")
 				keyboard.add(work_button)
-				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} воинов /nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 
