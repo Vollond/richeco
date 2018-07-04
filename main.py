@@ -4,15 +4,15 @@ from flask import Flask, request
 import psycopg2
 from telebot import types
 import re
-
+import json
+from collections import defaultdict
+_default_data = lambda: defaultdict(_default_data)
 
 DATABASE_URL = os.environ['DATABASE_URL']
-
-
-
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
-
 server = Flask(__name__)
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
@@ -29,9 +29,12 @@ def start(message):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	cursor.execute(f"insert into users (user_id,coin) values({userid},'10')")
+	jon = _default_data()
+	jon["build"]["n"]=1
+	jon=json.dumps(jon)
+	cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
 	conn.close()
-	bot.reply_to(message, 'pong, ' + message.from_user.first_name)
 
 @bot.message_handler(commands=['work'])
 def default_test(message):
@@ -61,7 +64,6 @@ def default_test(message):
 	cursor2.execute(f"select date from users where user_id={userid}")
 	jonew = cursor2.fetchall()
 	jonew = jonew[0][0]
-	jonew["build"]["n"] = jonew["build"]["n"] +1
 	n_count = jonew["build"]["n"]	
 	
 	conn.commit()
@@ -91,10 +93,7 @@ def callback_inline(call):
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
 			userid = call.from_user.id
-			from collections import defaultdict
-			_default_data = lambda: defaultdict(_default_data)
 			jon = _default_data()
-			import json
 			jon["build"]["n"]=1
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
