@@ -58,7 +58,6 @@ def default_test(message):
 	coin = re.findall(r'\d*\d', (str(coin)))
 	coin=coin[0]
 	cursor2 = conn.cursor()
-	cursor2.execute(f"select coin from users where user_id={userid}")	
 	cursor2.execute(f"select date from users where user_id={userid}")
 	jonew = cursor2.fetchall()
 	jonew = jonew[0][0]
@@ -67,7 +66,7 @@ def default_test(message):
 	
 	conn.commit()
 	conn.close()
-	bot.send_message(message.chat.id, "Монет: coin \n\n Постройки: \n N = n_count")
+	bot.send_message(message.chat.id, "Монет: {coin} \n\n Постройки: \n N = {n_count}")
 
 	
 @bot.callback_query_handler(func=lambda call: True)
