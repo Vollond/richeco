@@ -22,7 +22,7 @@ def f_coin (op,userid, change):
 		coin = coin[0][0]
 		conn.commit()
 		conn.close()
-	return coin
+		return coin
 	
 	if op == '+':
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -30,7 +30,6 @@ def f_coin (op,userid, change):
 		cursor2.execute(f"UPDATE users SET coin = coin + {change} WHERE user_id={userid}")	
 		conn.commit()
 		conn.close()
-	return coin	
 	
 def f_builds (op,userid):
 	if op == '?':
