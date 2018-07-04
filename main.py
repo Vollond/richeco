@@ -124,16 +124,16 @@ def callback_inline(call):
 			conn.close()
 			
 		if call.data == "exped":
-		bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
-		time.sleep(15) 
-		userid = call.from_user.id
-		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-		cursor2 = conn.cursor()
-		new_coin = 10
-		cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
-		conn.commit()
-		conn.close()
-		bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
+			bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
+			time.sleep(15) 
+			userid = call.from_user.id
+			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+			cursor2 = conn.cursor()
+			new_coin = 10
+			cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
+			conn.commit()
+			conn.close()
+			bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
 
 
 		
