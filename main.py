@@ -90,7 +90,7 @@ def callback_inline(call):
 			#cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
 			cursor2.execute(f"UPDATE users SET coin = coin + 99999999 WHERE user_id={userid}")
 			keyboard = types.InlineKeyboardMarkup()
-			work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
+			work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
 			keyboard.add(work_button)
 			bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
 
