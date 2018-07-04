@@ -94,12 +94,18 @@ def callback_inline(call):
 			keyboard2.add(work_button)
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
+			userid = message.from_user.id
+			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+			cursor = conn.cursor()
+			cursor.execute(f"select coin from users where user_id={userid}")
+			coin = cursor.fetchall()
+			coin = ''.join(str(e) for e in coin)
+			coin = re.findall(r'\d*\d', (str(coin)))
+			coin=coin[0]	
 			userid = call.from_user.id
 			jon = _default_data()
-			jon["build"]["n"]=1
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
-			jon=json.dumps(jon)
 			cursor2.execute(f"select date from users where user_id={userid}")
 			jonew = cursor2.fetchall()
 			jonew = jonew[0][0]
@@ -107,12 +113,15 @@ def callback_inline(call):
 			n_count = jonew["build"]["n"]
 			jon=json.dumps(jonew)
 			n_cost=n_count*n_count
-			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
-			cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
-			keyboard = types.InlineKeyboardMarkup()
-			work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
-			keyboard.add(work_button)
-			bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+			if coin >= n_cost:
+				cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+				cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
+				keyboard = types.InlineKeyboardMarkup()
+				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
+				keyboard.add(work_button)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 
 			conn.commit()
 			conn.close()
