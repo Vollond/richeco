@@ -27,6 +27,7 @@ def f_coin (op,userid):
 def f_builds (op,userid):
 	if op == '?':
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+		cursor = conn.cursor()
 		cursor.execute(f"select date from users where user_id={userid}")
 		jonew = cursor.fetchall()
 		jonew = jonew[0][0]
