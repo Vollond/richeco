@@ -55,8 +55,8 @@ def default_test(message):
 	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
 	n_count =  f_builds ('?',userid,"n",0)
-	n_cost = n_cost*n_cost
-	work_button = types.InlineKeyboardButton(text=(f"Строить N\n за ${n_count}"), callback_data="N")
+	n_cost = n_count*n_count
+	work_button = types.InlineKeyboardButton(text=(f"Строить N\n за ${n_cost}"), callback_data="N")
 	workers_button = types.InlineKeyboardButton(text=(f"Строить Рабочих\n за $10"), callback_data="workers")
 	warrior_button = types.InlineKeyboardButton(text=(f"Строить Воинов\n за $50"), callback_data="warrior")
 	keyboard.add(work_button)

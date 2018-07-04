@@ -38,7 +38,7 @@ def f_builds (op,userid, what, change):
 		cursor.execute(f"select date from users where user_id={userid}")
 		jonew = cursor.fetchall()
 		jonew = jonew[0][0]
-		n_count = jonew["build"][(f"{what}")]	
+		n_count = jonew["build"][(f"{what}")]
 		conn.commit()
 		conn.close()
 	if op == '+':
