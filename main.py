@@ -8,7 +8,7 @@ import json
 from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
 import time
-
+import funs.py
 
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
@@ -73,6 +73,9 @@ def default_test(message):
 	conn.commit()
 	conn.close()
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
+	coin2 =  f_coin (?,userid)
+	bot.send_message(message.chat.id, (f"Монет: {coin2} \n\n Постройки: \n N = {n_count}"))
+
 
 
 @bot.callback_query_handler(func=lambda call: True)
