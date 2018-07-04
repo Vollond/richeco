@@ -52,10 +52,17 @@ def default_test(message):
 	
 @bot.message_handler(commands=['build'])
 def default_test(message):
-    keyboard = types.InlineKeyboardMarkup()
-    work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
-    keyboard.add(work_button)
-    bot.send_message(message.chat.id, "Построить N?", reply_markup=keyboard)	
+	keyboard = types.InlineKeyboardMarkup()
+	workers_count =  f_builds ('?',userid, "workers", 0)
+	warrior_count =  f_builds ('?',userid, "warrior", 0)
+	coin =  f_coin ('?',userid, 0)
+	work_button = types.InlineKeyboardButton(text=(f"Строить N\n за ${coin}"), callback_data="N")
+	workers_button = types.InlineKeyboardButton(text=(f"Строить Рабочих\n за ${workers_count}"), callback_data="workers")
+	warrior_button = types.InlineKeyboardButton(text=(f"Строить Воинов\n за ${warrior_count}"), callback_data="warrior")
+	keyboard.add(work_button)
+	keyboard.add(workers_button)
+	keyboard.add(warrior_button)
+	bot.send_message(message.chat.id, "Построить чет?", reply_markup=keyboard)	
 
 @bot.message_handler(commands=['me'])
 def default_test(message):
@@ -115,6 +122,40 @@ def callback_inline(call):
 				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+				
+		if call.data == "workers":
+			userid = call.from_user.id
+			coin =  f_coin ('?',userid, 0)
+			n_count =  f_builds ('?',userid, "workers", 0)
+			n_cost=10
+			if int(coin) >= n_cost:
+				f_coin ('+',userid, -n_cost)
+				n_count =  f_builds ('+',userid,"workers", 1)
+				keyboard = types.InlineKeyboardMarkup()
+				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="workers")
+				keyboard.add(work_button)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+				
+		if call.data == "warrior":
+			userid = call.from_user.id
+			coin =  f_coin ('?',userid, 0)
+			n_count =  f_builds ('?',userid, "warrior", 0)
+			work_count =  f_builds ('?',userid, "workers", 0)
+			n_cost=50
+			if int(coin) >= n_cost and work_count >= 1 :
+				f_coin ('+',userid, -n_cost)
+				f_builds ('+',userid,"workers", -1)
+				n_count =  f_builds ('+',userid,"warrior", 1)
+				keyboard = types.InlineKeyboardMarkup()
+				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="warrior")
+				keyboard.add(work_button)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Строим еще за {n_cost}?"),reply_markup=keyboard)
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+
+				
 
 			
 		if call.data == "exped":
