@@ -64,13 +64,9 @@ def default_test(message):
 	jonew["build"]["n"] = jonew["build"]["n"] +1
 	n_count = jonew["build"]["n"]	
 	
-	
 	conn.commit()
 	conn.close()
-
-
-
-    bot.send_message(message.chat.id, "Монет: coin \n\n Постройки: \n N = n_count")
+	bot.send_message(message.chat.id, "Монет: coin \n\n Постройки: \n N = n_count")
 
 	
 @bot.callback_query_handler(func=lambda call: True)
