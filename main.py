@@ -60,7 +60,7 @@ def default_test(message):
 @bot.message_handler(commands=['me'])
 def default_test(message):
 	userid = message.from_user.id
-	coin =  f_coin ('?',userid,null)
+	coin =  f_coin ('?',userid, 0)
 	n_count =  f_builds ('?',userid)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
 
@@ -72,7 +72,7 @@ def callback_inline(call):
 		if call.data == "work":
 			userid = call.from_user.id
 			f_coin ('+',userid, 1)
-			coin =  f_coin ('?',userid, null)
+			coin =  f_coin ('?',userid, 0)
 			str2 = (f"$ = {coin}")
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="work")
