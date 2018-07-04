@@ -87,6 +87,7 @@ def callback_inline(call):
 			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 			cursor2.execute(f"UPDATE users SET coin = coin - 10 WHERE user_id={userid}")
 			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
+			bot.edit_message_text(inline_message_id=call.inline_message_id, text="Бдыщь",reply_markup=keyboard)
 			conn.commit()
 			conn.close()
 
