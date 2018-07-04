@@ -99,6 +99,7 @@ def callback_inline(call):
 			cursor = conn.cursor()
 			cursor.execute(f"select coin from users where user_id={userid}")
 			coin = cursor.fetchall()
+			coin=coin[0][0]
 			print (coin)
 			coin = ''.join(str(e) for e in coin)
 			print (coin)
