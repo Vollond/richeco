@@ -21,6 +21,16 @@ server = Flask(__name__)
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
+	
+@bot.message_handler(commands=['help'])
+def start(message):
+    bot.reply_to(message, """
+	/me
+	/build
+	/work
+	/new
+	/research
+	""" + message.from_user.first_name)
 
 @bot.message_handler(commands=['ping'])
 def start(message):
