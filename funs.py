@@ -31,7 +31,7 @@ def f_coin (op,userid, change):
 		conn.commit()
 		conn.close()
 	
-def f_builds (op,userid):
+def f_builds (op,userid, change):
 	if op == '?':
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cursor = conn.cursor()
@@ -39,6 +39,19 @@ def f_builds (op,userid):
 		jonew = cursor.fetchall()
 		jonew = jonew[0][0]
 		n_count = jonew["build"]["n"]	
+		conn.commit()
+		conn.close()
+	if op == '+':
+		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+		cursor = conn.cursor()
+		cursor.execute(f"select date from users where user_id={userid}")
+		jonew = cursor.fetchall()
+		jonew = jonew[0][0]
+		n_count = jonew["build"]["n"]	
+		jonew["build"]["n"] = n_count + change
+		n_count = jonew["build"]["n"]
+		jon=json.dumps(jonew)
+		cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 		conn.commit()
 		conn.close()
 	return n_count
