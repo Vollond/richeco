@@ -116,8 +116,6 @@ def callback_inline(call):
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 
-			conn.commit()
-			conn.close()
 			
 		if call.data == "exped":
 			bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
