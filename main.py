@@ -81,14 +81,12 @@ def callback_inline(call):
 			cursor2.execute(f"select date from users where user_id={userid}")
 			jonew = cursor2.fetchall()
 			jonew = jonew[0][0]
-			#jonew["build"]["n"] = jonew["build"]["n"] +1
-			jonew["build"]["n"] = 1
+			jonew["build"]["n"] = jonew["build"]["n"] +1
 			n_count = jonew["build"]["n"]
 			jon=json.dumps(jonew)
 			n_cost=n_count*n_count
 			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
-			#cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
-			cursor2.execute(f"UPDATE users SET coin = coin + 99999999 WHERE user_id={userid}")
+			cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
 			keyboard = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
 			keyboard.add(work_button)
