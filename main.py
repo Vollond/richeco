@@ -103,7 +103,7 @@ def callback_inline(call):
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
 			userid = call.from_user.id
-			coin =  f_coin ('?',userid, n, 0)
+			coin =  f_coin ('?',userid, 0)
 			n_count =  f_builds ('?',userid, "n", 0)
 			n_cost=n_count*n_count
 			if int(coin) >= n_cost:
