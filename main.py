@@ -185,7 +185,7 @@ def callback_inline(call):
 		
 		
 def roundup(x):
-	return x if x % 10 == 0 else x + 10 - x % 10						
+	return x if x % 100 == 0 else x + 100 - x % 100						
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
