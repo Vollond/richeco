@@ -101,7 +101,7 @@ def callback_inline(call):
 			coin = cursor.fetchall()
 			coin = ''.join(str(e) for e in coin)
 			coin = re.findall(r'(-|\d)*\d', (str(coin)))
-			coin=coin[0]	
+			coin=coin[0]
 			print (coin)
 			jon = _default_data()
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
