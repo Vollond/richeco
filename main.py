@@ -68,7 +68,7 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	bot.send_message(message.chat.id, (f"◾️◾️◾️◽️◽️◽️◽️◽️◽️"))
-	bot.edit_message_text(message.chat.id, call.message.message_id+1, text=(f"◾️◾️◾◾️◾️◾️◾️◾️◾️◽️"))
+	bot.edit_message_text(message.chat.id, message.message_id+1, text=(f"◾️◾️◾◾️◾️◾️◾️◾️◾️◽️"))
 
 
 @bot.callback_query_handler(func=lambda call: True)
