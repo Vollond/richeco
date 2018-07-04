@@ -104,19 +104,11 @@ def callback_inline(call):
 		if call.data == "N":
 			userid = call.from_user.id
 			coin =  f_coin ('?',userid, 0)
-			jon = _default_data()
-			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-			cursor2 = conn.cursor()
-			cursor2.execute(f"select date from users where user_id={userid}")
-			jonew = cursor2.fetchall()
-			jonew = jonew[0][0]
-			jonew["build"]["n"] = jonew["build"]["n"] +1
-			n_count = jonew["build"]["n"]
-			jon=json.dumps(jonew)
+			n_count =  f_builds ('?',userid, 0)
 			n_cost=n_count*n_count
 			if int(coin) >= n_cost:
-				cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
-				cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
+				f_coin ('+',userid, -n_cost)
+				n_count =  f_builds ('+',userid, 1)
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
 				keyboard.add(work_button)
