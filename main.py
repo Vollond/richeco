@@ -184,8 +184,7 @@ def callback_inline(call):
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 		
 		
-def roundup(x):
-	return x if x % 100 == 0 else x + 100 - x % 100						
+				
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
