@@ -90,7 +90,8 @@ def callback_inline(call):
 			keyboard = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
 			keyboard.add(work_button)
-			bot.edit_message_text(inline_message_id=call.inline_message_id, text="Бдыщь",reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, text="Бдыщь",reply_markup=keyboard)
+
 			conn.commit()
 			conn.close()
 
