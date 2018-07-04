@@ -10,6 +10,8 @@ _default_data = lambda: defaultdict(_default_data)
 import time
 from funs import f_coin
 from funs import f_builds
+import random
+
 
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
@@ -173,7 +175,7 @@ def callback_inline(call):
 				f_builds ('+',userid,"workers", +5)
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 				cursor2 = conn.cursor()
-				new_coin = 10
+				new_coin = random.normalvariate(10, 50)
 				cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
 				conn.commit()
 				conn.close()
