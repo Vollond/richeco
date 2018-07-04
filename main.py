@@ -28,7 +28,7 @@ def start(message):
 	userid = message.from_user.id
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute(f"insert into users (user_id,coin) values({userid},'10')")
+	cursor.execute(f"insert into users (user_id,coin) values({userid}, 10)")
 	jon = _default_data()
 	jon["build"]["n"]=1
 	jon=json.dumps(jon)
