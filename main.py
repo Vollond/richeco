@@ -61,7 +61,7 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
-	n_count =  f_builds ('?',userid,0)
+	n_count =  f_builds ('?',userid,"n",0)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
 
 @bot.message_handler(commands=['research'])
@@ -103,12 +103,12 @@ def callback_inline(call):
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
 			userid = call.from_user.id
-			coin =  f_coin ('?',userid, 0)
-			n_count =  f_builds ('?',userid, 0)
+			coin =  f_coin ('?',userid, n, 0)
+			n_count =  f_builds ('?',userid, "n", 0)
 			n_cost=n_count*n_count
 			if int(coin) >= n_cost:
 				f_coin ('+',userid, -n_cost)
-				n_count =  f_builds ('+',userid, 1)
+				n_count =  f_builds ('+',userid,"n", 1)
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
 				keyboard.add(work_button)
