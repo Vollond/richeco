@@ -59,9 +59,7 @@ def default_test(message):
 	cursor = conn.cursor()
 	cursor.execute(f"select coin from users where user_id={userid}")
 	coin = cursor.fetchall()
-	coin = ''.join(str(e) for e in coin)
-	coin = re.findall(r'\d*\d', (str(coin)))
-	coin=coin[0]
+	coin = coin[0][0]
 	cursor2 = conn.cursor()
 	cursor2.execute(f"select date from users where user_id={userid}")
 	jonew = cursor2.fetchall()
