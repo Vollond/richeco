@@ -80,13 +80,11 @@ def callback_inline(call):
 			cursor2 = conn.cursor()
 			cursor2.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
 			cursor2.execute(f"select coin from users where user_id={userid}")
-			results2 = cursor2.fetchall()
-			results2 = ''.join(str(e) for e in results2)
-			results2 = re.findall(r'\d*\d', (str(results2)))
-			results2=results2[0]
+			coin = cursor2.fetchall()
+			coin = coin[0][0]
 			conn.commit()
 			conn.close()
-			str2 = (f"$ = {results2}")
+			str2 = (f"$ = {coin}")
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
 			keyboard2.add(work_button)
