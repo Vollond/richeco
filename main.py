@@ -94,7 +94,7 @@ def callback_inline(call):
 			keyboard2.add(work_button)
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
-			userid = message.from_user.id
+			userid = call.from_user.id
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor = conn.cursor()
 			cursor.execute(f"select coin from users where user_id={userid}")
@@ -102,7 +102,6 @@ def callback_inline(call):
 			coin = ''.join(str(e) for e in coin)
 			coin = re.findall(r'\d*\d', (str(coin)))
 			coin=coin[0]	
-			userid = call.from_user.id
 			jon = _default_data()
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
