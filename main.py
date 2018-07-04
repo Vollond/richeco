@@ -100,15 +100,6 @@ def callback_inline(call):
 			cursor.execute(f"select coin from users where user_id={userid}")
 			coin = cursor.fetchall()
 			coin=coin[0][0]
-			print (coin)
-			coin = ''.join(str(e) for e in coin)
-			print (coin)
-			coin = ''.join(str(e) for e in coin)
-			print (coin)			
-			coin = re.findall(r'(-|\d)*\d', (str(coin)))
-			print (coin)
-			coin=coin[0]
-			print (coin)
 			jon = _default_data()
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
