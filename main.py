@@ -35,7 +35,9 @@ def start(message):
 	cursor.execute(f"delete from users where user_id={userid}")
 	cursor.execute(f"insert into users (user_id,coin) values({userid}, 10)")
 	jon = _default_data()
-	jon["build"]["n"]=1
+	jon["build"]["n"]=0
+	jon["build"]["workers"]=0
+	jon["build"]["warrior"]=0
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
