@@ -78,17 +78,15 @@ def callback_inline(call):
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
 			jon=json.dumps(jon)
-			#jon = json.loads(jon)
-
-			#cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 			cursor2.execute(f"select date from users where user_id={userid}")
 			jonew = cursor2.fetchall()
 			jonew = jonew[0][0]
 			jonew["build"]["n"] = jonew["build"]["n"] +1
+			n_count = jonew["build"]["n"]
 			jon=json.dumps(jonew)
 			cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 			cursor2.execute(f"UPDATE users SET coin = coin - 10 WHERE user_id={userid}")
-
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
 			conn.commit()
 			conn.close()
 
