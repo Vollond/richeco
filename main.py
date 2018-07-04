@@ -52,6 +52,7 @@ def default_test(message):
 	
 @bot.message_handler(commands=['build'])
 def default_test(message):
+	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
 	workers_count =  f_builds ('?',userid, "workers", 0)
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
