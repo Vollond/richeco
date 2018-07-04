@@ -102,6 +102,8 @@ def callback_inline(call):
 			print (coin)
 			coin = ''.join(str(e) for e in coin)
 			print (coin)
+			coin = ''.join(str(e) for e in coin)
+			print (coin)			
 			coin = re.findall(r'(-|\d)*\d', (str(coin)))
 			print (coin)
 			coin=coin[0]
