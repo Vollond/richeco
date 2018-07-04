@@ -50,7 +50,7 @@ def default_test(message):
     keyboard = types.InlineKeyboardMarkup()
     work_button = types.InlineKeyboardButton(text="Строим!", callback_data="N")
     keyboard.add(work_button)
-    bot.send_message(message.chat.id, "Построить N за 10 монет", reply_markup=keyboard)	
+    bot.send_message(message.chat.id, "Построить N?", reply_markup=keyboard)	
 
 @bot.message_handler(commands=['me'])
 def default_test(message):
@@ -112,7 +112,7 @@ def callback_inline(call):
 			n_count = jonew["build"]["n"]
 			jon=json.dumps(jonew)
 			n_cost=n_count*n_count
-			if coin >= n_cost:
+			if int(coin) >= n_cost:
 				cursor2.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 				cursor2.execute(f"UPDATE users SET coin = coin - {n_cost} WHERE user_id={userid}")
 				keyboard = types.InlineKeyboardMarkup()
