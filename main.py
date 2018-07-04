@@ -9,6 +9,7 @@ from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
 import time
 from funs import f_coin
+from funs import f_builds
 
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
@@ -60,7 +61,7 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid)
-	n_count =  n_count ('?',userid)
+	n_count =  f_builds ('?',userid)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
 
 
