@@ -47,6 +47,10 @@ def default_test(message):
     keyboard.add(work_button)
     bot.send_message(message.chat.id, "Построить N за 10 монет", reply_markup=keyboard)	
 
+@bot.message_handler(commands=['me'])
+def default_test(message):
+    bot.send_message(message.chat.id, "Построить N за 10 монет\n asdasdas \n sadasdasdas")	
+
 	
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
