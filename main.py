@@ -175,7 +175,7 @@ def callback_inline(call):
 				f_builds ('+',userid,"workers", +5)
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 				cursor2 = conn.cursor()
-				new_coin = random.normalvariate(10, 50)
+				new_coin = random.normalvariate(10, 3)
 				cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
 				conn.commit()
 				conn.close()
