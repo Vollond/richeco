@@ -28,9 +28,9 @@ def start(message):
 	/me
 	/build
 	/work
-	\new
+	/new
 	/research
-	""" + message.from_user.first_name)
+	""")
 
 @bot.message_handler(commands=['ping'])
 def start(message):
