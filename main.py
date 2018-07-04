@@ -67,8 +67,20 @@ def default_test(message):
 @bot.message_handler(commands=['research'])
 def default_test(message):
 	userid = message.from_user.id
-	bot.send_message(message.chat.id, (f"◾️◾️◾️◽️◽️◽️◽️◽️◽️"))
-	bot.edit_message_text(chat_id=message.chat.id, message_id=message.message_id+1, text=(f"◾️◾️◾◾️◾️◾️◾️◾️◾️◽️"))
+	bot.send_message(message.chat.id, (f"◽️◽️◽️◽️◽️◽️◽️◽️◽️"))
+	msgid=message.message_id+1
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◽️◽️◽️◽️◽️◽️◽️◽️"))
+	time.sleep(1) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◽️◽️◽️◽️◽️◽️"))
+	time.sleep(1) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◽️◽️◽️◽️◽️"))
+	time.sleep(1) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◽️◽️◽️◽️"))
+	time.sleep(1) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◽️◽️◽️"))
+	time.sleep(1) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◾️"))
+
 
 
 @bot.callback_query_handler(func=lambda call: True)
