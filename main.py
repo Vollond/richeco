@@ -71,14 +71,8 @@ def callback_inline(call):
 	if call.message:
 		if call.data == "work":
 			userid = call.from_user.id
-			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-			cursor2 = conn.cursor()
-			cursor2.execute(f"UPDATE users SET coin = coin + 1 WHERE user_id={userid}")
-			cursor2.execute(f"select coin from users where user_id={userid}")
-			coin = cursor2.fetchall()
-			coin = coin[0][0]
-			conn.commit()
-			conn.close()
+			f_coin ('+',userid, 1)
+			coin =  f_coin ('?',userid)
 			str2 = (f"$ = {coin}")
 			keyboard2 = types.InlineKeyboardMarkup()
 			work_button = types.InlineKeyboardButton(text=str2, callback_data="work")
