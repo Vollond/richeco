@@ -99,8 +99,11 @@ def callback_inline(call):
 			cursor = conn.cursor()
 			cursor.execute(f"select coin from users where user_id={userid}")
 			coin = cursor.fetchall()
+			print (coin)
 			coin = ''.join(str(e) for e in coin)
+			print (coin)
 			coin = re.findall(r'(-|\d)*\d', (str(coin)))
+			print (coin)
 			coin=coin[0]
 			print (coin)
 			jon = _default_data()
