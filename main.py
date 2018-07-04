@@ -66,7 +66,7 @@ def default_test(message):
 	
 	conn.commit()
 	conn.close()
-	bot.send_message(message.chat.id, "Монет: {coin} \n\n Постройки: \n N = {n_count}")
+	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}")
 
 	
 @bot.callback_query_handler(func=lambda call: True)
