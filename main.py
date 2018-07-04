@@ -61,7 +61,7 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
-	n_count =  f_builds ('?',userid)
+	n_count =  f_builds ('?',userid,0)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
 
 @bot.message_handler(commands=['research'])
