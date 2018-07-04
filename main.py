@@ -44,7 +44,7 @@ def start(message):
 def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="work")
-	work_button = types.InlineKeyboardButton(text="Отправить рабочих в експедицию", callback_data="exped_button")
+	exped_button = types.InlineKeyboardButton(text="Отправить рабочих в експедицию", callback_data="exped")
 	keyboard.add(work_button)
 	keyboard.add(exped_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
