@@ -59,22 +59,9 @@ def default_test(message):
 @bot.message_handler(commands=['me'])
 def default_test(message):
 	userid = message.from_user.id
-	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-	cursor = conn.cursor()
-	cursor.execute(f"select coin from users where user_id={userid}")
-	coin = cursor.fetchall()
-	coin = coin[0][0]
-	cursor2 = conn.cursor()
-	cursor2.execute(f"select date from users where user_id={userid}")
-	jonew = cursor2.fetchall()
-	jonew = jonew[0][0]
-	n_count = jonew["build"]["n"]	
-	
-	conn.commit()
-	conn.close()
+	coin =  f_coin ('?',userid)
+	n_count =  n_count ('?',userid)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
-	coin2 =  f_coin ('?',userid)
-	bot.send_message(message.chat.id, (f"Монет: {coin2} \n\n Постройки: \n N = {n_count}"))
 
 
 
