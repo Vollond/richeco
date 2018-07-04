@@ -7,6 +7,8 @@ import re
 import json
 from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
+import time
+
 
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
@@ -41,8 +43,10 @@ def start(message):
 @bot.message_handler(commands=['work'])
 def default_test(message):
     keyboard = types.InlineKeyboardMarkup()
-    work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="test")
+    work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="work")
+	work_button = types.InlineKeyboardButton(text="Отправить рабочих в експедицию", callback_data="exped_button")
     keyboard.add(work_button)
+	keyboard.add(exped_button)
     bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
 	
 @bot.message_handler(commands=['build'])
@@ -74,7 +78,7 @@ def default_test(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 	if call.message:
-		if call.data == "test":
+		if call.data == "work":
 			userid = call.from_user.id
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			cursor2 = conn.cursor()
@@ -86,7 +90,7 @@ def callback_inline(call):
 			conn.close()
 			str2 = (f"$ = {coin}")
 			keyboard2 = types.InlineKeyboardMarkup()
-			work_button = types.InlineKeyboardButton(text=str2, callback_data="test")
+			work_button = types.InlineKeyboardButton(text=str2, callback_data="work")
 			keyboard2.add(work_button)
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
@@ -118,7 +122,22 @@ def callback_inline(call):
 
 			conn.commit()
 			conn.close()
+			
+		if call.data == "exped":
+		bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
+		time.sleep(15) 
+		userid = call.from_user.id
+		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+		cursor2 = conn.cursor()
+		new_coin = 10
+		cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
+		conn.commit()
+		conn.close()
+		bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
 
+
+		
+		
 	
 
 @server.route("/bot", methods=['POST'])
