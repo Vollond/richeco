@@ -49,6 +49,7 @@ def default_test(message):
 
 @bot.message_handler(commands=['me'])
 def default_test(message):
+	userid = message.from_user.id
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	cursor.execute(f"select coin from users where user_id={userid}")
