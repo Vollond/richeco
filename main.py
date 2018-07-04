@@ -180,12 +180,12 @@ def callback_inline(call):
 			workers_count=f_builds ('?',userid,"workers", 0)
 			if (workers_count >= 5):
 				f_builds ('+',userid,"workers", -5)
-				bot.send_message(call.message.chat.id, (f"Рабочие вернутся через 15 секунд"))
-				time.sleep(15) 
+				bot.send_message(call.message.chat.id, (f"Рабочие скоро вернутся"))
+				time.sleep(random(15,50)) 
 				f_builds ('+',userid,"workers", +5)
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 				cursor2 = conn.cursor()
-				new_coin = abs(round(round(random.normalvariate(12, 12),-1)))
+				new_coin = abs(round(round(random.normalvariate(12, 12),-1)))/2
 				cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
 				conn.commit()
 				conn.close()
