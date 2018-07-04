@@ -54,12 +54,11 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
-	workers_count =  f_builds ('?',userid, "workers", 0)
-	warrior_count =  f_builds ('?',userid, "warrior", 0)
-	coin =  f_coin ('?',userid, 0)
-	work_button = types.InlineKeyboardButton(text=(f"Строить N\n за ${coin}"), callback_data="N")
-	workers_button = types.InlineKeyboardButton(text=(f"Строить Рабочих\n за ${workers_count}"), callback_data="workers")
-	warrior_button = types.InlineKeyboardButton(text=(f"Строить Воинов\n за ${warrior_count}"), callback_data="warrior")
+	n_count =  f_builds ('?',userid,"n",0)
+	n_cost = n_cost*n_cost
+	work_button = types.InlineKeyboardButton(text=(f"Строить N\n за ${n_count}"), callback_data="N")
+	workers_button = types.InlineKeyboardButton(text=(f"Строить Рабочих\n за $10"), callback_data="workers")
+	warrior_button = types.InlineKeyboardButton(text=(f"Строить Воинов\n за $50"), callback_data="warrior")
 	keyboard.add(work_button)
 	keyboard.add(workers_button)
 	keyboard.add(warrior_button)
@@ -70,7 +69,10 @@ def default_test(message):
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
 	n_count =  f_builds ('?',userid,"n",0)
-	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}"))
+	workers_count =  f_builds ('?',userid, "workers", 0)
+	warrior_count =  f_builds ('?',userid, "warrior", 0)
+	coin =  f_coin ('?',userid, 0)
+	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}\n\n Постройки: \n workers_count = {workers_count} \n warrior_count = {warrior_count}"))
 
 @bot.message_handler(commands=['research'])
 def default_test(message):
