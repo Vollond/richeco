@@ -19,7 +19,15 @@ DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 server = Flask(__name__)
 
-
+@bot.message_handler(commands=['wr1'])
+def start(message):
+bot.send_message(call.message.chat.id, (f"""Рабочие нашли: 
+						'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
+						Оно дышит, оно греет, оно ест. 
+						Оно испражняется, оно целует. 
+						Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
+						""", parse_mode=Markdown))
+						
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
@@ -242,11 +250,45 @@ def callback_inline(call):
 						bot.send_message(call.message.chat.id, (f"Рабочие нашли странный кристал\n нужно бы обследовать его"))
 					elif(sid<300):
 						bot.send_message(call.message.chat.id, (f"Все експедиторы погибли в лесу"))
+					else:
+						f_builds ('+',userid,"workers", +20)
+						bot.send_message(call.message.chat.id, (f"В этот раз експедиция вернулась с пустыми руками"))
 					f_builds ('+',userid,"exped", -1)	
 				else:
 					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!")
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!")
+	
+		if call.data == "unknown_place":
+			workers_count=f_builds ('?',userid,"workers", 0)
+			exped_count=f_builds ('?',userid,"exped", 0)	
+			if (exped_count <1):
+				if (workers_count >= 20):
+					f_builds ('+',userid,"exped", +1)
+					f_builds ('+',userid,"workers", -20)
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=(f"Рабочие скоро вернутся"))
+					quality = random.randint(1,5)
+					time.sleep(random.randint(30,80)*quality)
+					sid = random.randint(1,4000)*quality/3
+					if(sid>4000):
+						f_builds ('+',userid,"workers", +20)			
+						f_builds ('+',userid,"crystal", +1)
+						bot.send_message(call.message.chat.id, (f"""Рабочие нашли: 
+						'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
+						Оно дышит, оно греет, оно ест. 
+						Оно испражняется, оно целует. 
+						Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
+						""", parse_mode=Markdown))
+					elif(sid<300):
+						bot.send_message(call.message.chat.id, (f"Все експедиторы погибли в лесу"))
+					else:
+						f_builds ('+',userid,"workers", +20)
+						bot.send_message(call.message.chat.id, (f"В этот раз експедиция вернулась с пустыми руками"))
+					f_builds ('+',userid,"exped", -1)	
+				else:
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!")
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!")				
 
 
 		
