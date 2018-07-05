@@ -27,11 +27,7 @@ def start(message):
 @bot.message_handler(commands=['help'])
 def start(message):
     bot.reply_to(message, """
-	/me
-	/build
-	/work
-	/new
-	/research
+	/menu
 	""")
 	
 @bot.message_handler(commands=['menu'])
@@ -61,6 +57,7 @@ def start(message):
 	jon["build"]["workers"]=0
 	jon["build"]["warrior"]=0
 	jon["build"]["exped"]=0
+	
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
