@@ -40,7 +40,7 @@ def start(message):
 	if (f_builds ('?',userid, "crystal", 0)>1):
 		research="research"
 	else:
-	exped="xxxx"
+		exped="xxxx"
 	markup.row('work', (f"{exped}"))
 	markup.row('me', 'build', (f"{research}"))
 	bot.send_message(message.chat.id, "Choose:", reply_markup=markup)
