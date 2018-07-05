@@ -23,13 +23,13 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['wr1'])
 def start(message):
-	bot.send_message(chat_id=message.chat.id, text=(f"""
+	bot.send_message(chat_id=message.chat.id, text="""
 	Рабочие нашли: 
 	'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 	Оно дышит, оно греет, оно ест. 
 	Оно испражняется, оно целует. 
 	Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
-	"""), parse_mode='Markdown')
+	""", parse_mode='Markdown')
 					
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -37,7 +37,7 @@ def start(message):
 	
 @bot.message_handler(commands=['ping'])
 def start(message):
-    bot.send_message(chat_id=message.chat.id, text="123", parse_mode='Markdown')
+    bot.send_message(chat_id=message.chat.id, text="'123' 123**123** 11''231231''2312123", parse_mode='Markdown')
 	
 @bot.message_handler(commands=['help'])
 def start(message):

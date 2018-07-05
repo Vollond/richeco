@@ -18,10 +18,8 @@ def create_calendar(year,month):
     for week in my_calendar:
         row=[]
         for day in week:
-            if(day==0):
-                row.append(types.InlineKeyboardButton(" ",callback_data="ignore"))
-            else:
-                row.append(types.InlineKeyboardButton(str(day),callback_data="calendar-day-"+str(day)))
+                row.append(types.InlineKeyboardButton("⬜️",callback_data="ignore"))
+
         markup.row(*row)
     #Last row - Buttons
     row=[]
