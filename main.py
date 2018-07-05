@@ -11,6 +11,8 @@ import time
 from funs import f_coin
 from funs import f_builds
 import random
+from battles import defens
+
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -117,11 +119,14 @@ def default_test(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 	if call.message:
-		if (random.randint(0,100)<5):
+		userid = call.from_user.id 
+		if (f_coin('?',userid, 0)>40) and (random.randint(0,100)<3): #BATLLES
 			bot.send_message(call.message.chat.id, (f"На вас напали"))
+			batl_res, score = defens(userid, rand)
+			bot.send_message(message.chat.id, (f"{batl_res}"))	
+
 			
 		if call.data == "work":
-			userid = call.from_user.id
 			f_coin ('+',userid, 1)
 			coin =  f_coin ('?',userid, 0)
 			str2 = (f"$ = {coin}")
@@ -130,12 +135,11 @@ def callback_inline(call):
 			keyboard2.add(work_button)
 			bot.edit_message_reply_markup(chat_id=call.message.chat.id,  message_id=call.message.message_id, reply_markup=keyboard2)
 		if call.data == "N":
-			userid = call.from_user.id
 			coin =  f_coin ('?',userid, 0)
 			n_count =  f_builds ('?',userid, "n", 0)
 			n_cost=n_count*n_count
 			if int(coin) >= n_cost:
-				f_coin ('+',userid, -n_cost)
+				f_coin ('+',userid, - n_cost)
 				n_count =  f_builds ('+',userid,"n", 1)
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
@@ -145,12 +149,11 @@ def callback_inline(call):
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 				
 		if call.data == "workers":
-			userid = call.from_user.id
 			coin =  f_coin ('?',userid, 0)
 			n_count =  f_builds ('?',userid, "workers", 0)
 			n_cost=10
 			if int(coin) >= n_cost:
-				f_coin ('+',userid, -n_cost)
+				f_coin ('+',userid, - n_cost)
 				n_count =  f_builds ('+',userid,"workers", 1)
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="workers")
@@ -160,7 +163,6 @@ def callback_inline(call):
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 				
 		if call.data == "warrior":
-			userid = call.from_user.id
 			coin =  f_coin ('?',userid, 0)
 			n_count =  f_builds ('?',userid, "warrior", 0)
 			work_count =  f_builds ('?',userid, "workers", 0)
