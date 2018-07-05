@@ -122,7 +122,7 @@ def callback_inline(call):
 		userid = call.from_user.id 
 		if (f_coin('?',userid, 0)>40) and (random.randint(0,100)<3): #BATLLES
 			bot.send_message(call.message.chat.id, (f"На вас напали"))
-			batl_res, score = defens(userid, rand)
+			batl_res, score = defens(userid, "rand")
 			bot.send_message(message.chat.id, (f"{batl_res}"))	
 
 			

@@ -18,7 +18,7 @@ server = Flask(__name__)
 
 def defens (userid, mode):
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
-	if op == 'rand':
+	if mode == 'rand':
 		power1 = warrior_count*3
 		power2 = rand(3,50)
 		if (power1>power2):
