@@ -23,7 +23,7 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['wr1'])
 def start(message):
-	bot.send_message(chat_id=message.chat.id, text='123', parse_mode='Markdown')
+	bot.send_message(chat_id=message.chat.id, parse_mode='Markdown', text='123')
 '''
 	"""
 	Рабочие нашли: 
