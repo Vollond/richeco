@@ -33,9 +33,9 @@ def start(message):
 @bot.message_handler(commands=['menu'])
 def start(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	markup.row('work', 'xxx')
+	markup.row('work', 'exped')
 	markup.row('me', 'build', 'xxx')
-	bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
+	bot.send_message(message.chat.id, "Choose:", reply_markup=markup)
 
 	
 @bot.message_handler(commands=['ping'])
@@ -57,7 +57,7 @@ def start(message):
 	jon["build"]["workers"]=0
 	jon["build"]["warrior"]=0
 	jon["build"]["exped"]=0
-	
+	jon["build"]["crystal"]=0
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
@@ -67,10 +67,19 @@ def start(message):
 def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="work")
-	exped_button = types.InlineKeyboardButton(text="Отправить в експедицию 5 рабочих", callback_data="exped")
+	exped_button = types.InlineKeyboardButton(text="Отправить 5 человек в шахту", callback_data="exped")
 	keyboard.add(work_button)
 	keyboard.add(exped_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
+	
+@bot.message_handler(func=lambda mess: mess.text=='exped' and mess.content_type=='text')
+def default_test(message):
+	keyboard = types.InlineKeyboardMarkup()
+	forest_button = types.InlineKeyboardButton(text="Отправить 20 человек исследовать лес", callback_data="forest")
+	_button = types.InlineKeyboardButton(text="Отправить 50 человек исследовать черт знает что неподалеку", callback_data="unknown_place")
+	keyboard.add(work_button)
+	keyboard.add(exped_button)
+	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)		
 
 @bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
 def default_test(message):
@@ -78,13 +87,18 @@ def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	n_count =  f_builds ('?',userid,"n",0)
 	n_cost = n_count*n_count
-	work_button = types.InlineKeyboardButton(text=(f"Строить N\n за ${n_cost}"), callback_data="N")
-	workers_button = types.InlineKeyboardButton(text=(f"Строить Рабочих\n за $10"), callback_data="workers")
-	warrior_button = types.InlineKeyboardButton(text=(f"Строить Воинов\n за $50"), callback_data="warrior")
+	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
+	workers_button = types.InlineKeyboardButton(text=(f"Рабочих"), callback_data="workers")
+	warrior_button = types.InlineKeyboardButton(text=(f"Воинов"), callback_data="warrior")
 	keyboard.add(work_button)
 	keyboard.add(workers_button)
 	keyboard.add(warrior_button)
-	bot.send_message(message.chat.id, "Построить чет?", reply_markup=keyboard)	
+	bot.send_message(message.chat.id, """
+	Построить чет?
+	Строить N-центр\n за ${n_cost}
+	Строить Рабочих\n за $10
+	Строить Воинов\n за $50
+	""", reply_markup=keyboard)	
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
@@ -94,7 +108,7 @@ def default_test(message):
 	workers_count =  f_builds ('?',userid, "workers", 0)
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	coin =  f_coin ('?',userid, 0)
-	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}\n\n Постройки: \n workers_count = {workers_count} \n warrior_count = {warrior_count}"))
+	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N-центры = {n_count}\n\n Постройки: \n workers_count = {workers_count} \n warrior_count = {warrior_count}"))
 
 @bot.message_handler(func=lambda mess: mess.text=='research' and mess.content_type=='text')	
 def default_test(message):
@@ -149,7 +163,7 @@ def callback_inline(call):
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="N")
 				keyboard.add(work_button)
-				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} N \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} N-центров \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
 				
@@ -186,8 +200,7 @@ def callback_inline(call):
 				
 
 			
-		if call.data == "exped":
-			userid = call.from_user.id
+		if call.data == "mine":
 			workers_count=f_builds ('?',userid,"workers", 0)
 			exped_count=f_builds ('?',userid,"exped", 0)	
 			if (exped_count <1):
@@ -198,18 +211,36 @@ def callback_inline(call):
 					time.sleep(random.randint(15,50))
 					f_builds ('+',userid,"workers", +5)
 					f_builds ('+',userid,"exped", -1)
-					conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-					cursor2 = conn.cursor()
 					new_coin = round((abs(round(random.normalvariate(12, 12),-1)))/2)
-					cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
-					conn.commit()
-					conn.close()
+					f_coin('+',userid, new_coin)
 					bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
 				else:
-					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает ресурсов!\n /work")
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!\n /work")
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
-
+		
+		if call.data == "forest":
+			workers_count=f_builds ('?',userid,"workers", 0)
+			exped_count=f_builds ('?',userid,"exped", 0)	
+			if (exped_count <1):
+				if (workers_count >= 20):
+					f_builds ('+',userid,"exped", +1)
+					f_builds ('+',userid,"workers", -20)
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=(f"Рабочие скоро вернутся"))
+					quality = random.randint(1,5)
+					time.sleep(random.randint(30,80)*quality)
+					sid = random.randint(1,4000)*quality/3
+					if(sid>4000):
+						f_builds ('+',userid,"workers", +20)			
+						f_builds ('+',userid,"crystal", +1)
+						bot.send_message(call.message.chat.id, (f"Рабочие нашли странный кристал\n нужно бы обследовать его"))
+					elif(sid<300):
+						bot.send_message(call.message.chat.id, (f"Все експедиторы погибли в лесу"))
+					f_builds ('+',userid,"exped", -1)	
+				else:
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!\n /work")
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
 
 
 		
