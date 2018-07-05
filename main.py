@@ -182,12 +182,12 @@ def callback_inline(call):
 			exped_count=f_builds ('?',userid,"exped", 0)	
 			if (exped_count <1):
 				if (workers_count >= 5):
-					f_builds ('+',userid,"exped", -1)
+					f_builds ('+',userid,"exped", +1)
 					f_builds ('+',userid,"workers", -5)
 					bot.send_message(call.message.chat.id, (f"Рабочие скоро вернутся"))
 					time.sleep(random.randint(15,50))
 					f_builds ('+',userid,"workers", +5)
-					f_builds ('+',userid,"exped", +1)
+					f_builds ('+',userid,"exped", -1)
 					conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 					cursor2 = conn.cursor()
 					new_coin = round((abs(round(random.normalvariate(12, 12),-1)))/2)
