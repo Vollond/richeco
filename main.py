@@ -89,19 +89,19 @@ def default_test(message):
 	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
 	n_count =  f_builds ('?',userid,"n",0)
-	n_cost = n_count*n_count
+	n_cost = 100
 	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
 	workers_button = types.InlineKeyboardButton(text=(f"Рабочих"), callback_data="workers")
 	warrior_button = types.InlineKeyboardButton(text=(f"Воинов"), callback_data="warrior")
 	keyboard.add(work_button)
 	keyboard.add(workers_button)
 	keyboard.add(warrior_button)
-	bot.send_message(message.chat.id, """
+	bot.send_message(message.chat.id, (f"""
 	Построить чет?
 	Строить N-центр\n за ${n_cost}
 	Строить Рабочих\n за $10
 	Строить Воинов\n за $50
-	""", reply_markup=keyboard)	
+	"""), reply_markup=keyboard)	
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
@@ -111,7 +111,14 @@ def default_test(message):
 	workers_count =  f_builds ('?',userid, "workers", 0)
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	coin =  f_coin ('?',userid, 0)
-	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N-центры = {n_count}\n\n Постройки: \n workers_count = {workers_count} \n warrior_count = {warrior_count}"))
+	bot.send_message(message.chat.id, (f"""
+	Монет: {coin} 
+	
+	Постройки: 
+	N-центры = {n_count}
+	Жители: 
+	Рабочих = {workers_count} 
+	Воинов = {warrior_count}"""))
 
 @bot.message_handler(func=lambda mess: mess.text=='research' and mess.content_type=='text')	
 def default_test(message):
