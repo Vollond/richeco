@@ -33,7 +33,15 @@ def start(message):
 	/new
 	/research
 	""")
+	
+@bot.message_handler(commands=['menu'])
+def start(message):
+	markup = types.ReplyKeyboardMarkup()
+	markup.row('work', 'exped')
+	markup.row('c', 'd', 'e')
+	bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
+	
 @bot.message_handler(commands=['ping'])
 def start(message):
 	bot.send_message(message.chat.id, 'pong, ' + message.from_user.first_name)
@@ -62,7 +70,7 @@ def start(message):
 def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="work")
-	exped_button = types.InlineKeyboardButton(text="Отправить рабочих в експедицию 5 рабочих", callback_data="exped")
+	exped_button = types.InlineKeyboardButton(text="Отправить в експедицию 5 рабочих", callback_data="exped")
 	keyboard.add(work_button)
 	keyboard.add(exped_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
