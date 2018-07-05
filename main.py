@@ -26,7 +26,7 @@ def start(message):
 	bot.send_message(chat_id=message.chat.id, parse_mode='Markdown', text='123')
 	bot.send_message(message.chat.id, (f"""
 	Построить чет?
-	Строить N-центр\n за ${n_cost}
+	Строить N-центр\n за
 	Строить Рабочих\n за $10
 	Строить Воинов\n за $50
 	"""), parse_mode='Markdown')
