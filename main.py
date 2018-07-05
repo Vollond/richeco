@@ -35,8 +35,9 @@ def start(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	if (f_builds ('?',userid, "n", 0)>1):
 		exped="exped"
-	else exped="xxxx"
-		if (f_builds ('?',userid, "crystal", 0)>1):
+	else 
+		exped="xxxx"
+	if (f_builds ('?',userid, "crystal", 0)>1):
 		research="research"
 	else exped="xxxx"
 	markup.row('work', (f"{exped}"))
