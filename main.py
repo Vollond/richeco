@@ -13,6 +13,7 @@ from funs import f_builds
 import random
 from battles import defens
 from telegramcalendar import create_calendar
+import datetime
 
 
 
