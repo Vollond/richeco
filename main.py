@@ -33,15 +33,15 @@ def start(message):
 @bot.message_handler(commands=['menu'])
 def start(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	markup.row('work', 'exped')
-	markup.row('me', 'build', 'research')
+	if (f_builds ('?',userid, "n", 0)>1):
+		exped="exped"
+	else exped="xxxx"
+		if (f_builds ('?',userid, "crystal", 0)>1):
+		research="research"
+	else exped="xxxx"
+	markup.row('work', (f"{exped}"))
+	markup.row('me', 'build', (f"{research}"))
 	bot.send_message(message.chat.id, "Choose:", reply_markup=markup)
-
-	
-@bot.message_handler(commands=['ping'])
-def start(message):
-	bot.send_message(message.chat.id, 'pong, ' + message.from_user.first_name)
-	bot.send_message(message.chat.id, 'pong, ' + message.from_user.id)
 
 
 @bot.message_handler(commands=['new'])
@@ -132,6 +132,7 @@ def default_test(message):
 	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◽️"))
 	time.sleep(10) 
 	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◾️"))
+	bot.send_message(message.chat.id, (f"Теперь вы можете нечто новое...."))
 
 
 
