@@ -184,7 +184,7 @@ def callback_inline(call):
 				if (workers_count >= 5):
 					f_builds ('+',userid,"exped", +1)
 					f_builds ('+',userid,"workers", -5)
-					bot.send_message(call.message.chat.id, (f"Рабочие скоро вернутся"))
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=(f"Рабочие скоро вернутся"))
 					time.sleep(random.randint(15,50))
 					f_builds ('+',userid,"workers", +5)
 					f_builds ('+',userid,"exped", -1)
