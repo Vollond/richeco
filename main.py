@@ -50,6 +50,7 @@ def start(message):
 	jon["build"]["n"]=0
 	jon["build"]["workers"]=0
 	jon["build"]["warrior"]=0
+	jon["build"]["exped"]=0
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
@@ -178,22 +179,27 @@ def callback_inline(call):
 		if call.data == "exped":
 			userid = call.from_user.id
 			workers_count=f_builds ('?',userid,"workers", 0)
-			if (workers_count >= 5):
-				f_builds ('+',userid,"workers", -5)
-				bot.send_message(call.message.chat.id, (f"Рабочие скоро вернутся"))
-				time.sleep(random.randint(15,50))
-				f_builds ('+',userid,"workers", +5)
-				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-				cursor2 = conn.cursor()
-				new_coin = round((abs(round(random.normalvariate(12, 12),-1)))/2)
-				cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
-				conn.commit()
-				conn.close()
-				bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
+			exped_count=f_builds ('?',userid,"exped", 0)	
+			if (exped <1):
+				if (workers_count >= 5):
+					f_builds ('+',userid,"exped", -1)
+					f_builds ('+',userid,"workers", -5)
+					bot.send_message(call.message.chat.id, (f"Рабочие скоро вернутся"))
+					time.sleep(random.randint(15,50))
+					f_builds ('+',userid,"workers", +5)
+					f_builds ('+',userid,"exped", +1)
+					conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+					cursor2 = conn.cursor()
+					new_coin = round((abs(round(random.normalvariate(12, 12),-1)))/2)
+					cursor2.execute(f"UPDATE users SET coin = coin + {new_coin} WHERE user_id={userid}")
+					conn.commit()
+					conn.close()
+					bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
+				else:
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает ресурсов!\n /work")
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
-		
-		
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
+
 				
 
 @server.route("/bot", methods=['POST'])
