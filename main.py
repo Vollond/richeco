@@ -29,19 +29,21 @@ def start(message):
 	"""), parse_mode='Markdown')
 	msgid=message.message_id+1
 	time.sleep(1) 	
-	bot.edit_message_text(chat_id=message.chat.id, (f"""
+	bot.edit_message_text(chat_id=message.chat.id, msgid, (f"""
 Рабочие нашли помятый кусок свитка: 
 `Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 Оно дышит, оно греет, оно ест.` 
 	"""), parse_mode='Markdown')
 	time.sleep(1) 	
-	bot.edit_message_text(chat_id=message.chat.id, (f"""
+	bot.edit_message_text(chat_id=message.chat.id, msgid, (f"""
 Рабочие нашли помятый кусок свитка: 
 `Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 Оно дышит, оно греет, оно ест. 
 Оно испражняется, оно целует.` 
 	"""), parse_mode='Markdown')
-	time.sleep(1) 					
+	time.sleep(1) 		
+
+	
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
