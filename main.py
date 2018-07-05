@@ -32,6 +32,7 @@ def start(message):
 	
 @bot.message_handler(commands=['menu'])
 def start(message):
+	userid = message.from_user.id
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	if (f_builds ('?',userid, "n", 0)>1):
 		exped="exped"
