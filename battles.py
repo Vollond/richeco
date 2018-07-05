@@ -35,8 +35,8 @@ def defens (userid, mode):
 		
 			"""), batl_res)	
 		else:
-		batl_res = warrior_count - power1*(power1/power2)
-		return ("lose", batl_res)	
+			batl_res = warrior_count - power1*(power1/power2)
+			return ("lose", batl_res)	
 		
 		
 	
