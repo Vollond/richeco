@@ -22,13 +22,15 @@ def defens (userid, mode):
 		power1 = warrior_count*3
 		power2 = rand(3,50)
 		if (power1>power2):
-		batl_res = power1 - power2*(power2/power1)
+		batl_res = round((power1 - power2*(power2/power1))/3)
 		return ((f"""
+		На крепость напали!
 		Твои воины оказались сильнее
-		Потери:
+		
+		Твои Потери:
 		{batl_res}
 		Потери врага:
-		
+		{batl_res}
 		
 		
 		"""), batl_res)	
