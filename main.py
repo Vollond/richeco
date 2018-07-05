@@ -33,7 +33,12 @@ def start(message):
 	Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
 	"""
 '''
-	
+	bot.send_message(message.chat.id, (f"""
+	Построить чет?
+	Строить N-центр\n за ${n_cost}
+	Строить Рабочих\n за $10
+	Строить Воинов\n за $50
+	"""), parse_mode='Markdown')
 					
 @bot.message_handler(commands=['start'])
 def start(message):
