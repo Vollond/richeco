@@ -28,7 +28,7 @@ def start(message):
 						Оно дышит, оно греет, оно ест. 
 						Оно испражняется, оно целует. 
 						Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
-						"""), parse_mode="Markdown")
+						"""), parse_mode="markdown")
 						
 @bot.message_handler(commands=['start'])
 def start(message):
