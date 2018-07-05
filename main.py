@@ -117,6 +117,8 @@ def default_test(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 	if call.message:
+		if 	(random.randint(15,50)>10)	
+			bot.send_message(call.message.chat.id, (f"На вас напали"))
 		if call.data == "work":
 			userid = call.from_user.id
 			f_coin ('+',userid, 1)
@@ -200,8 +202,9 @@ def callback_inline(call):
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
 
-				
 
+
+		
 @server.route("/bot", methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
