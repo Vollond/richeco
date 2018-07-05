@@ -37,8 +37,8 @@ def start(message):
 @bot.message_handler(commands=['menu'])
 def start(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True))
-	markup.row('work', 'exped')
-	markup.row('me', 'build', 'e')
+	markup.row('work', 'xxx')
+	markup.row('me', 'build', 'xxx')
 	bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
 	
