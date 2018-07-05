@@ -22,7 +22,7 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['wr1'])
 def start(message):
-	bot.send_message(call.message.chat.id, (f"""Рабочие нашли: 
+	bot.send_message(message.chat.id, (f"""Рабочие нашли: 
 						'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 						Оно дышит, оно греет, оно ест. 
 						Оно испражняется, оно целует. 
