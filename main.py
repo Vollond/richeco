@@ -117,7 +117,7 @@ def default_test(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 	if call.message:
-		if 	(random.randint(15,50)>10)	
+		if 	(random.randint(15,50)>10):
 			bot.send_message(call.message.chat.id, (f"На вас напали"))
 		if call.data == "work":
 			userid = call.from_user.id
