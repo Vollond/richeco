@@ -291,7 +291,7 @@ def callback_inline(call):
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!")				
 
-#######################
+#########################
 @bot.message_handler(commands=['calendar'])
 def get_calendar(message):
     now = datetime.datetime.now() #Current date
