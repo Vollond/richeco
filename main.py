@@ -34,7 +34,7 @@ def start(message):
 def start(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	markup.row('work', 'exped')
-	markup.row('me', 'build', 'xxx')
+	markup.row('me', 'build', 'research')
 	bot.send_message(message.chat.id, "Choose:", reply_markup=markup)
 
 	
@@ -76,9 +76,9 @@ def default_test(message):
 def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	forest_button = types.InlineKeyboardButton(text="Отправить 20 человек исследовать лес", callback_data="forest")
-	_button = types.InlineKeyboardButton(text="Отправить 50 человек исследовать черт знает что неподалеку", callback_data="unknown_place")
-	keyboard.add(work_button)
-	keyboard.add(exped_button)
+	unknown_place_button = types.InlineKeyboardButton(text="Отправить 50 человек исследовать черт знает что неподалеку", callback_data="unknown_place")
+	keyboard.add(forest_button)
+	keyboard.add(unknown_place_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)		
 
 @bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
@@ -109,6 +109,30 @@ def default_test(message):
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	coin =  f_coin ('?',userid, 0)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N-центры = {n_count}\n\n Постройки: \n workers_count = {workers_count} \n warrior_count = {warrior_count}"))
+
+@bot.message_handler(func=lambda mess: mess.text=='research' and mess.content_type=='text')	
+def default_test(message):
+	userid = message.from_user.id
+	bot.send_message(message.chat.id, (f"◽️◽️◽️◽️◽️◽️◽️◽️◽️"))
+	msgid=message.message_id+1
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◽️◽️◽️◽️◽️◽️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◽️◽️◽️◽️◽️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◽️◽️◽️◽️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◽️◽️◽️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◽️◽️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◽️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◽️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◽️"))
+	time.sleep(10) 
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◾️"))
+
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -217,27 +241,7 @@ def callback_inline(call):
 					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!\n /work")
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
-			
-			
-				bot.send_message(message.chat.id, (f"◽️◽️◽️◽️◽️◽️◽️◽️◽️"))
-				msgid=message.message_id+1
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◽️◽️◽️◽️◽️◽️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◽️◽️◽️◽️◽️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◽️◽️◽️◽️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◽️◽️◽️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◽️◽️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◽️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◽️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◽️"))
-				time.sleep(10) 
-				bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"◾️◾️◾️◾️◾️◾️◾️◾️◾️"))
+
 
 		
 @server.route("/bot", methods=['POST'])
