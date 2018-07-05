@@ -20,15 +20,17 @@ import datetime
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 server = Flask(__name__)
-'''
+
 @bot.message_handler(commands=['wr1'])
 def start(message):
-	bot.send_message(chat_id=message.chat.id, text=(f"""Рабочие нашли: 
-						'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
-						Оно дышит, оно греет, оно ест. 
-						Оно испражняется, оно целует. 
-						Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' """), parse_mode="markdown")
-'''					
+	bot.send_message(chat_id=message.chat.id, text=(f"""
+	Рабочие нашли: 
+	'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
+	Оно дышит, оно греет, оно ест. 
+	Оно испражняется, оно целует. 
+	Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
+	"""), parse_mode='Markdown')
+					
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
