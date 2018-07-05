@@ -180,7 +180,7 @@ def callback_inline(call):
 			userid = call.from_user.id
 			workers_count=f_builds ('?',userid,"workers", 0)
 			exped_count=f_builds ('?',userid,"exped", 0)	
-			if (exped <1):
+			if (exped_count <1):
 				if (workers_count >= 5):
 					f_builds ('+',userid,"exped", -1)
 					f_builds ('+',userid,"workers", -5)
