@@ -27,25 +27,8 @@ def start(message):
 @bot.message_handler(commands=['help'])
 def start(message):
     bot.reply_to(message, """
-	/menu
+	/me
 	""")
-	
-@bot.message_handler(commands=['menu'])
-def start(message):
-	userid = message.from_user.id
-	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	if (f_builds ('?',userid, "n", 0)>1):
-		exped="exped"
-	else: 
-		exped="xxxx"
-	if (f_builds ('?',userid, "crystal", 0)>1):
-		research="research"
-	else:
-		research="xxxx"
-	markup.row('work', (f"{exped}"))
-	markup.row('me', 'build', (f"{research}"))
-	bot.send_message(message.chat.id, "Choose:", reply_markup=markup)
-
 
 @bot.message_handler(commands=['new'])
 def start(message):
@@ -106,6 +89,18 @@ def default_test(message):
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
 	userid = message.from_user.id
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	if (f_builds ('?',userid, "n", 0)>1):
+		exped="exped"
+	else: 
+		exped="xxxx"
+	if (f_builds ('?',userid, "crystal", 0)>1):
+		research="research"
+	else:
+		research="xxxx"
+	markup.row('work', (f"{exped}"))
+	markup.row('me', 'build', (f"{research}"))
+	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
 	n_count =  f_builds ('?',userid,"n",0)
 	workers_count =  f_builds ('?',userid, "workers", 0)
@@ -118,7 +113,7 @@ def default_test(message):
 	N-центры = {n_count}
 	Жители: 
 	Рабочих = {workers_count} 
-	Воинов = {warrior_count}"""))
+	Воинов = {warrior_count}"""),reply_markup=markup)
 
 @bot.message_handler(func=lambda mess: mess.text=='research' and mess.content_type=='text')	
 def default_test(message):
@@ -176,7 +171,7 @@ def callback_inline(call):
 				keyboard.add(work_button)
 				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} N-центров \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
 				
 		if call.data == "workers":
 			coin =  f_coin ('?',userid, 0)
@@ -190,7 +185,7 @@ def callback_inline(call):
 				keyboard.add(work_button)
 				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} рабочих \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
 				
 		if call.data == "warrior":
 			coin =  f_coin ('?',userid, 0)
@@ -206,7 +201,7 @@ def callback_inline(call):
 				keyboard.add(work_button)
 				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} воинов \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!\n /work")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
 
 				
 
@@ -226,9 +221,9 @@ def callback_inline(call):
 					f_coin('+',userid, new_coin)
 					bot.send_message(call.message.chat.id, (f"Рабочие нашли ${new_coin}"))
 				else:
-					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!\n /work")
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!")
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!")
 		
 		if call.data == "forest":
 			workers_count=f_builds ('?',userid,"workers", 0)
@@ -249,9 +244,9 @@ def callback_inline(call):
 						bot.send_message(call.message.chat.id, (f"Все експедиторы погибли в лесу"))
 					f_builds ('+',userid,"exped", -1)	
 				else:
-					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!\n /work")
+					bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает людей!")
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!\n /work")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="У вас уже отправленна експедиция!")
 
 
 		
