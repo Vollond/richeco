@@ -23,12 +23,12 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['wr1'])
 def start(message):
-	bot.send_message(chat_id=message.chat.id, parse_mode='Markdown', text='123')
 	bot.send_message(message.chat.id, (f"""
-	Построить чет?
-	Строить N-центр\n за
-	Строить Рабочих\n за $10
-	Строить Воинов\n за $50
+	Рабочие нашли: 
+	`Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
+	Оно дышит, оно греет, оно ест. 
+	Оно испражняется, оно целует. 
+	Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].` 
 	"""), parse_mode='Markdown')
 					
 @bot.message_handler(commands=['start'])
