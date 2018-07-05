@@ -274,12 +274,12 @@ def callback_inline(call):
 					if(sid>4000):
 						f_builds ('+',userid,"workers", +20)			
 						f_builds ('+',userid,"crystal", +1)
-						bot.send_message(call.message.chat.id, (f"""Рабочие нашли: 
+						bot.send_message(chat_id=message.chat.id, text=(f"""Рабочие нашли: 
 						'Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 						Оно дышит, оно греет, оно ест. 
 						Оно испражняется, оно целует. 
 						Но какое заблуждение говорить о нем как о чем-то одном и определенном [le ça].' 
-						""", parse_mode=Markdown))
+						"""), parse_mode='Markdown')
 					elif(sid<300):
 						bot.send_message(call.message.chat.id, (f"Все експедиторы погибли в лесу"))
 					else:
