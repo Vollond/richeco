@@ -29,13 +29,13 @@ def start(message):
 	"""), parse_mode='Markdown')
 	msgid=message.message_id+1
 	time.sleep(1) 	
-	bot.edit_message_text(chat_id=message.chat.id, msgid, (f"""
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"""
 Рабочие нашли помятый кусок свитка: 
 `Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 Оно дышит, оно греет, оно ест.` 
 	"""), parse_mode='Markdown')
 	time.sleep(1) 	
-	bot.edit_message_text(chat_id=message.chat.id, msgid, (f"""
+	bot.edit_message_text(chat_id=message.chat.id, message_id=msgid, text=(f"""
 Рабочие нашли помятый кусок свитка: 
 `Оно [ça] * функционирует повсюду, иногда без остановок, иногда с перерывами. 
 Оно дышит, оно греет, оно ест. 
