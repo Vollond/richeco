@@ -33,6 +33,10 @@ def start(message):
 def start(message):
     bot.reply_to(message, 'Helo, ' + message.from_user.first_name)
 	
+@bot.message_handler(commands=['ping'])
+def start(message):
+    bot.send_message(chat_id=message.chat.id, text="123", parse_mode='Markdown')
+	
 @bot.message_handler(commands=['help'])
 def start(message):
     bot.reply_to(message, """
