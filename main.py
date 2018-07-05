@@ -167,7 +167,7 @@ def callback_inline(call):
 		if call.data == "N":
 			coin =  f_coin ('?',userid, 0)
 			n_count =  f_builds ('?',userid, "n", 0)
-			n_cost=100*n_cost
+			n_cost=100
 			if int(coin) >= n_cost:
 				f_coin ('+',userid, - n_cost)
 				n_count =  f_builds ('+',userid,"n", 1)
