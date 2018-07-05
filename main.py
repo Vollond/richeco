@@ -38,7 +38,7 @@ def start(message):
 def start(message):
 	markup = types.ReplyKeyboardMarkup()
 	markup.row('work', 'exped')
-	markup.row('c', 'd', 'e')
+	markup.row('me', 'build', 'e')
 	bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
 	
@@ -66,7 +66,7 @@ def start(message):
 	conn.commit()
 	conn.close()
 
-@bot.message_handler(commands=['work'])
+@bot.message_handler(func=lambda mess: mess.text=='work' and mess.content_type=='text')
 def default_test(message):
 	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text="Кликай, чтобы заработать!", callback_data="work")
