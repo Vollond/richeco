@@ -74,8 +74,8 @@ def default_test(message):
 	keyboard.add(work_button)
 	keyboard.add(exped_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)	
-	
-@bot.message_handler(commands=['build'])
+
+@bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
 def default_test(message):
 	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
@@ -89,7 +89,7 @@ def default_test(message):
 	keyboard.add(warrior_button)
 	bot.send_message(message.chat.id, "Построить чет?", reply_markup=keyboard)	
 
-@bot.message_handler(commands=['me'])
+@bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
@@ -99,7 +99,7 @@ def default_test(message):
 	coin =  f_coin ('?',userid, 0)
 	bot.send_message(message.chat.id, (f"Монет: {coin} \n\n Постройки: \n N = {n_count}\n\n Постройки: \n workers_count = {workers_count} \n warrior_count = {warrior_count}"))
 
-@bot.message_handler(commands=['research'])
+@bot.message_handler(func=lambda mess: mess.text=='research' and mess.content_type=='text')	
 def default_test(message):
 	userid = message.from_user.id
 	bot.send_message(message.chat.id, (f"◽️◽️◽️◽️◽️◽️◽️◽️◽️"))
