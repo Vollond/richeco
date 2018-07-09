@@ -1,6 +1,5 @@
 import telebot
 import os
-from flask import Flask, request
 import psycopg2
 from telebot import types
 import re
@@ -14,5 +13,6 @@ import random
 from battles import defens
 from telegramcalendar import create_calendar
 import datetime
+
 from main import task_test
 task_test()
