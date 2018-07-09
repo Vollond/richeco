@@ -56,6 +56,9 @@ def start(message):
 	"""), parse_mode='Markdown')
 	time.sleep(1) 	
 
+def task_test:
+	bot.send_message(322682583, "таск")	
+
 	
 @bot.message_handler(commands=['start'])
 def start(message):
