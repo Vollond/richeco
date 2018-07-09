@@ -14,6 +14,7 @@ telebot  = "*"
 psycopg2 = "*"
 flask = "*"
 psycopg2-binary = "*"
+Flask-Script="*"
 
 
 [dev-packages]
