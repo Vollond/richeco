@@ -8,10 +8,23 @@ import json
 from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
 import time
+import datetime
 
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 server = Flask(__name__)
+
+def create_task(userid, time,act):
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+	cursor = conn.cursor()
+	now=time.time()
+	now+=660
+	future=time.ctime(now)
+	act=json.dumps(act)
+	cursor.execute(f"INSERT INTO tasks (user_id, time, action) VALUES({userid}, {future}, {act}) ")	
+	conn.commit()
+	conn.close()
+
 
 def f_coin (op,userid, change):
 	if op == '?':

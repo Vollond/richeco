@@ -99,6 +99,22 @@ def start(message):
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
 	conn.close()
+	
+@bot.message_handler(commands=['upd'])
+def start(message):
+	userid = message.from_user.id
+	
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+	cursor = conn.cursor()
+	cursor.execute(f"delete from users where user_id={userid}")
+	cursor.execute(f"insert into users (user_id,coin) values({userid}, 10)")
+	jon = _default_data()
+	jon["build"]["exp"]=0
+	jon=json.dumps(jon)
+	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+	conn.commit()
+	conn.close()	
+	
 
 @bot.message_handler(func=lambda mess: mess.text=='work' and mess.content_type=='text')
 def default_test(message):
@@ -149,7 +165,7 @@ def default_test(message):
 		research="research"
 	else:
 		research="xxxx"
-	markup.row('work', (f"{exped}"))
+	markup.row('work', (f"{exped}"),'laboratory')
 	markup.row('me', 'build', (f"{research}"))
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
@@ -165,6 +181,24 @@ def default_test(message):
 	Жители: 
 	Рабочих = {workers_count} 
 	Воинов = {warrior_count}"""),reply_markup=markup)
+	
+	
+@bot.message_handler(func=lambda mess: mess.text=='laboratory' and mess.content_type=='text')	
+def default_test(message):
+	userid = message.from_user.id
+	jon = _default_data()
+	jon["build"]["exp"]["+"]=1
+	create_task(userid,660,jon)
+
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('Начать исследование',)
+	bot.send_message(message.chat.id, (f"""
+	Исследования приблизят вас к новым технологиям и возможностям
+	
+	
+	"""),reply_markup=markup)
+	
+
 
 @bot.message_handler(func=lambda mess: mess.text=='research' and mess.content_type=='text')	
 def default_test(message):
