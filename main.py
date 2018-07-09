@@ -57,8 +57,11 @@ def start(message):
 	time.sleep(1) 	
 
 def task_test():
-	bot.send_message('322682583', "таск")	
+	bot.send_message(322682583, "таск")	
 
+@bot.message_handler(commands=['task'])
+def start(message):
+	bot.send_message(322682583, "таск")	
 	
 @bot.message_handler(commands=['start'])
 def start(message):
