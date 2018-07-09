@@ -16,5 +16,5 @@ import datetime
 
 import main
 from main import task_test
-task_test(self)
+task_test()
 print ('123')
