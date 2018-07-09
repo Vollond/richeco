@@ -15,5 +15,5 @@ from telegramcalendar import create_calendar
 import datetime
 
 from main import task_test
-task_test()
+task_test(self)
 print ('123')
