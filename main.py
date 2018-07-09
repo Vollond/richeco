@@ -8,11 +8,12 @@ import json
 from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
 import time
-from funs import f_coin
-from funs import f_builds
+import funs 
 import random
 from battles import defens
 from telegramcalendar import create_calendar
+
+
 import datetime
 
 
