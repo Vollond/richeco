@@ -57,6 +57,7 @@ def start(message):
 	time.sleep(1) 	
 
 def task_test(self):
+	bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 	bot.send_message(322682583, "таск")	
 
 @bot.message_handler(commands=['task'])

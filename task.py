@@ -14,6 +14,7 @@ from battles import defens
 from telegramcalendar import create_calendar
 import datetime
 
+import main
 from main import task_test
 task_test(self)
 print ('123')
