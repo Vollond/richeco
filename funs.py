@@ -30,11 +30,11 @@ def my_task(userid):
 	now=time.time()
 	cursor.execute(f"select time from tasks where user_id={userid}")
 	i=0
-	for row in cursor:
+	for task in cursor:
 	#if(act!=[]):
 		print (task) 
-		print(time.ctime(task[0][0]))
-		t_time = task[0][0] - now
+		print(time.ctime(task[0]))
+		t_time = task[0] - now
 		print(t_time)
 		conn.commit()
 		conn.close()	
@@ -46,9 +46,6 @@ def my_task(userid):
 	#	conn.commit()
 	#	conn.close()	
 	#	return t_time
-	
-	
-		print(row)
 	
 
 def f_coin (op,userid, change):
