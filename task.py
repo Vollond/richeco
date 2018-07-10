@@ -26,8 +26,8 @@ def task_loop():
 	cursor = conn.cursor()
 	now=time.time()
 	cursor.execute(f"select action from tasks where time < {now}")
-	coin = cursor.fetchall()
-	coin = coin[0][0]
+	act = cursor.fetchall()
+	print (act)
 	conn.commit()
 	conn.close()
 
