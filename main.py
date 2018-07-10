@@ -15,6 +15,7 @@ from battles import defens
 from telegramcalendar import create_calendar
 import datetime
 from funs import create_task
+from funs import my_task
 
 
 
