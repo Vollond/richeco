@@ -28,11 +28,11 @@ while (i<9):
 	now=time.time()
 	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
 	act = cursor.fetchall()
+	print (act)
 	action=act[0]
 	user_id = act[1]
 	id = act[2]
 	cursor.execute(f"delete from tasks where id={id}")
-	print (act)
 	bot.send_message(322682583, (f"={action}"))	
 	conn.commit()
 	conn.close()
