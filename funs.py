@@ -31,10 +31,10 @@ def my_task(userid):
 	cursor.execute(f"select time from tasks where user_id={userid}")
 	for task in cursor:
 	#if(act!=[]):
-		print (task) 
-		print(time.ctime(task[0]))
+		#print (task) 
+		#print(time.ctime(task[0]))
 		t_time = task[0] - now
-		print(t_time)	
+		#print(t_time)	
 		tasks=[]
 		tasks.append(t_time)
 	conn.commit()
