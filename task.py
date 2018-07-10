@@ -39,13 +39,13 @@ def my_tasks_cron ():
 		bot.send_message(user_id, (f"={id}"))	
 	conn.commit()
 	conn.close()
-
+'''
 i=0
 while (i<9):
 	my_tasks_cron()
 	time.sleep(60) 	
 	i+=1
-	
+	'''
 '''
 print ('1')
 import main
