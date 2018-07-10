@@ -28,15 +28,16 @@ while (i<9):
 	now=time.time()
 	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
 	act = cursor.fetchall()
-	print (act)
-	action = act[0][0]
-	user_id = act[0][1]
-	id = act[0][2]
-	print(action)
-	print(user_id)
-	print(id)
-	cursor.execute(f"delete from tasks where id={id}")
-	bot.send_message(user_id, (f"={id}"))	
+	if(act!="[]")
+		print (act)
+		action = act[0][0]
+		user_id = act[0][1]
+		id = act[0][2]
+		print(action)
+		print(user_id)
+		print(id)
+		cursor.execute(f"delete from tasks where id={id}")
+		bot.send_message(user_id, (f"={id}"))	
 	conn.commit()
 	conn.close()
 	time.sleep(60) 	
