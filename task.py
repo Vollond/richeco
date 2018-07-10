@@ -41,7 +41,7 @@ def my_tasks_cron ():
 	conn.close()
 	 	
 
-
+loop()
 def loop ():
 	i=0
 	while (i<9):
