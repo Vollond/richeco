@@ -184,6 +184,11 @@ def default_test(message):
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
 	print (len(m_task))
+	i=0
+	task_str = "Задачи:\n"
+	while (i<=len(m_task))
+		task_str += m_task[i]
+		i+=1
 	bot.send_message(message.chat.id, (f"""
 	Задачи: {m_task}
 	
