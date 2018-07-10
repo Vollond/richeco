@@ -46,7 +46,7 @@ def loop ():
 	i=0
 	while (i<9):
 		my_tasks_cron()
-		time.sleep(60) 	
+		time.sleep(1) 	
 		i+=1
 loop()	
 '''
