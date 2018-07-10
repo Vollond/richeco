@@ -114,7 +114,7 @@ def start(message):
 	print (jon)
 	print(jon[0][0])
 	jon[0][0]["build"]["people"]=0
-	jon=json.dumps(jon)
+	jon=json.dumps(jon[0])
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
 	conn.close()	
