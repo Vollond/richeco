@@ -110,7 +110,7 @@ def start(message):
 	cursor = conn.cursor()
 	cursor.execute(f"select date from users where user_id={userid}")
 	jonew = cursor.fetchall()
-	jon = jonew[0]
+	jon = jonew
 	jon["build"]["people"]=0
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
