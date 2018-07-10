@@ -8,6 +8,8 @@ import json
 
 print(time.ctime())
 now=time.time()
+print(now)
+print(time.ctime(now))
 now+=660
 	
 def new():
