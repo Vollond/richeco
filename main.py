@@ -16,7 +16,7 @@ from telegramcalendar import create_calendar
 import datetime
 from funs import create_task
 from funs import my_task
-from task import my_tasks_cron
+#from task2 import my_tasks_cron
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
