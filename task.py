@@ -20,7 +20,9 @@ import datetime
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
-def my_tasks_cron ():
+
+i=0
+while (i<9):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	now=time.time()
@@ -38,15 +40,8 @@ def my_tasks_cron ():
 		bot.send_message(user_id, (f"={id}"))	
 	conn.commit()
 	conn.close()
-	
-	
-	
-i=0
-while (i<9):
-	my_tasks_cron()
 	time.sleep(60) 	
 	i+=1
-
 
 '''
 print ('1') 

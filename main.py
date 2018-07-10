@@ -16,7 +16,7 @@ from telegramcalendar import create_calendar
 import datetime
 from funs import create_task
 from funs import my_task
-from task import my_tasks_cron
+
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -164,9 +164,6 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	
-	my_tasks_cron()
-	
 	if (f_builds ('?',userid, "n", 0)>1):
 		exped="exped"
 	else: 
