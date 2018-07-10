@@ -191,7 +191,7 @@ def default_test(message):
 	jon = _default_data()
 	jon["build"]["exp"]["+"]=1
 	create_task(userid,660,jon)
-
+	
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	markup.row('Начать исследование',)
 	bot.send_message(message.chat.id, (f"""

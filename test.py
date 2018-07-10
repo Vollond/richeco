@@ -6,3 +6,5 @@ print(time.ctime())
 now=time.time()
 now+=660
 print(time.ctime(now))
+now = datetime.datetime.now() 
+print(now)
