@@ -114,9 +114,7 @@ def start(message):
 	jon = jonew
 	print (jon)
 	print(jon[0][0])
-	jon[0][0]["build"]["people"]=10
-	jon[0][0]["build"]["population growth"]=1
-	jon[0][0]["build"]["food"]=5
+	jon[0][0]["build"]["people"]=0
 	jon=json.dumps(jon[0][0])
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
@@ -180,7 +178,6 @@ def default_test(message):
 	workers_count =  f_builds ('?',userid, "workers", 0)
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	coin =  f_coin ('?',userid, 0)
-	print (m_task)
 	m_task=my_task(userid)
 	bot.send_message(message.chat.id, (f"""
 	Задачи: {m_task}
