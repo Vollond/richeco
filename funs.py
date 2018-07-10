@@ -39,7 +39,7 @@ def my_task(userid):
 		conn.commit()
 		conn.close()	
 		tasks=[]
-		tasks[i]=t_time
+		tasks.append(t_time)
 		i+=1
 		return tasks
 	#else:
