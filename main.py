@@ -453,5 +453,5 @@ def webhook():
     bot.set_webhook(url="https://richeco.herokuapp.com/bot")
     return "!", 200
 
-server.run(host="0.0.0.0", port=os.environ.get('PORT', 8443))
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 443))
 server = Flask(__name__)
