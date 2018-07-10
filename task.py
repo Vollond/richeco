@@ -21,7 +21,6 @@ DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
 
-	
 i=0
 while (i<9):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -44,4 +43,12 @@ while (i<9):
 	time.sleep(60) 	
 	i+=1
 
-
+'''
+print ('1')
+import main
+print ('2')
+from main import task_test
+task_test()
+print ('123')
+task_test()
+'''
