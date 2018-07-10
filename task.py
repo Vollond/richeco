@@ -49,7 +49,7 @@ while (i<9):
 
 
 '''
-print ('1')
+print ('1') 
 import main
 print ('2')
 from main import task_test
