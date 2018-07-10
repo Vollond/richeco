@@ -24,6 +24,19 @@ def create_task(userid, f_time,act):
 	conn.commit()
 	conn.close()
 
+def my_task(userid):
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+	cursor = conn.cursor()
+	now=time.time()
+	cursor.execute(f"select time from tasks where user_id={userid}")
+	task = cursor.fetchall()
+	t_time = task-now
+	t_time = time.ctime(t_time)
+	conn.commit()
+	conn.close()	
+	return t_time
+	
+	
 
 def f_coin (op,userid, change):
 	if op == '?':
