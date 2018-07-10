@@ -31,20 +31,12 @@ def my_task(userid):
 	cursor.execute(f"select time from tasks where user_id={userid}")
 	tasks=[]
 	for task in cursor:
-	#if(act!=[]):
-		#print (task) 
-		#print(time.ctime(task[0]))
 		t_time = task[0] - now
-		#print(t_time)	
-		tasks.append(t_time)
+		tasks.appendround(t_time))
 	conn.commit()
 	conn.close()
 	print(tasks)
 	return tasks
-	#else:
-	#	conn.commit()
-	#	conn.close()	
-	#	return t_time
 	
 
 def f_coin (op,userid, change):
