@@ -41,14 +41,14 @@ def my_tasks_cron ():
 	conn.close()
 	 	
 
-loop()
+
 def loop ():
 	i=0
 	while (i<9):
 		my_tasks_cron()
 		time.sleep(60) 	
 		i+=1
-	
+loop()	
 '''
 print ('1')
 import main
