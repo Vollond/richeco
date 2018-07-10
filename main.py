@@ -183,7 +183,7 @@ def default_test(message):
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
-	print (m_task)
+	print (len(m_task))
 	bot.send_message(message.chat.id, (f"""
 	Задачи: {m_task}
 	
