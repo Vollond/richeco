@@ -29,21 +29,25 @@ def my_task(userid):
 	cursor = conn.cursor()
 	now=time.time()
 	cursor.execute(f"select time from tasks where user_id={userid}")
-	'''task = cursor.fetchall()
-	if(act!=[]):
+	i=0
+	for row in cursor:
+	#if(act!=[]):
 		print (task) 
 		print(time.ctime(task[0][0]))
 		t_time = task[0][0] - now
 		print(t_time)
 		conn.commit()
 		conn.close()	
-		return t_time
-	else:
-		conn.commit()
-		conn.close()	
-		return t_time
+		tasks=[]
+		tasks[i]=t_time
+		i+=1
+		return tasks
+	#else:
+	#	conn.commit()
+	#	conn.close()	
+	#	return t_time
 	'''
-	for row in cursor:
+	
 		print(row)
 	
 
