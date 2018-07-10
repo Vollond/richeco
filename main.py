@@ -96,12 +96,13 @@ def start(message):
 	jon["build"]["warrior"]=0
 	jon["build"]["exped"]=0
 	jon["build"]["crystal"]=0
+	jon["build"]["exp"]=0
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
 	conn.close()
 	
-@bot.message_handler(commands=['upd'])
+@bot.message_handler(commands=['upd']) #Нужно сделать добавление ячеек
 def start(message):
 	userid = message.from_user.id
 	
