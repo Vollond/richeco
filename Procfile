@@ -1,1 +1,1 @@
-bot: python UselessBot.py
+bot: python main.py
