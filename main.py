@@ -16,7 +16,7 @@ from telegramcalendar import create_calendar
 import datetime
 from funs import create_task
 from funs import my_task
-
+from task import my_tasks_cron
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -115,6 +115,9 @@ def start(message):
 	print (jon)
 	print(jon[0][0])
 	jon[0][0]["build"]["people"]=0
+	jon[0][0]["build"]["people"]=10
+	jon[0][0]["build"]["population growth"]=1
+	jon[0][0]["build"]["food"]=5
 	jon=json.dumps(jon[0][0])
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
@@ -179,6 +182,7 @@ def default_test(message):
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
+	print (m_task)
 	bot.send_message(message.chat.id, (f"""
 	Задачи: {m_task}
 	
