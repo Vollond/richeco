@@ -33,8 +33,6 @@ def my_task(userid):
 	print(time.ctime(task[0][0]))
 	t_time = task[0][0] - now
 	print(t_time)
-	t_time = time.ctime(t_time)
-	print(t_time)
 	conn.commit()
 	conn.close()	
 	return t_time
