@@ -5,6 +5,7 @@ import datetime
 print(time.ctime())
 now=time.time()
 now+=660
+time.sleep(60)
 print(time.ctime(time.time()))
 print(time.time())
 time.sleep(1)

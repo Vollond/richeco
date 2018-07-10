@@ -26,11 +26,14 @@ while (i<9):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	now=time.time()
-	cursor.execute(f"select action, user_id from tasks where time < {now}")
-	#act = cursor.fetchall()
-	act = cursor.fetchone()
+	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
+	act = cursor.fetchall()
+	action=act[0]
+	user_id = act[1]
+	id = act[2]
+	cursor.execute(f"delete from tasks where id={id}")
 	print (act)
-	bot.send_message(322682583, "таск")	
+	bot.send_message(322682583, (f"={action}"))	
 	conn.commit()
 	conn.close()
 	time.sleep(60) 	
