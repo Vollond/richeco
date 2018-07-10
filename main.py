@@ -199,7 +199,8 @@ def default_test(message):
 	create_task(userid,660,jon)
 	
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	markup.row('Начать исследование',)
+	markup.row('Начать исследование')
+	markup.row('me')
 	bot.send_message(message.chat.id, (f"""
 	Исследования приблизят вас к новым технологиям и возможностям
 	
