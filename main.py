@@ -187,7 +187,7 @@ def default_test(message):
 	i=0
 	task_str = "Задачи:\n"
 	while (i<=len(m_task)):
-		task_str += m_task[i]
+		task_str += (f"{m_task[i]}")
 		i+=1
 	bot.send_message(message.chat.id, (f"""
 	Задачи: {m_task}

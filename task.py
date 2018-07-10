@@ -14,7 +14,7 @@ import random
 from battles import defens
 from telegramcalendar import create_calendar
 import datetime
-
+from funs import f_builds
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -40,7 +40,8 @@ while (i<9):
 		bot.send_message(user_id, (f"={id}"))	
 	conn.commit()
 	conn.close()
-	time.sleep(60) 	
+	time.sleep(60)
+		
 	i+=1
 
 '''
