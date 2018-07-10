@@ -190,7 +190,7 @@ def default_test(message):
 		task_str += (f"{m_task[i]}")
 		i+=1
 	bot.send_message(message.chat.id, (f"""
-	Задачи: {m_task}
+	{task_str}
 	
 	Монет: {coin} 
 	
