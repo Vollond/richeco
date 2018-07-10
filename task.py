@@ -40,7 +40,7 @@ def my_tasks_cron ():
 	conn.commit()
 	conn.close()
 
-
+i=0
 while (i<9):
 	my_tasks_cron()
 	time.sleep(60) 	
