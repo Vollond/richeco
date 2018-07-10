@@ -35,7 +35,7 @@ while (i<9):
 	print(action)
 	print(user_id)
 	print(id)
-	#cursor.execute(f"delete from tasks where id={id}")
+	cursor.execute(f"delete from tasks where id={id}")
 	bot.send_message(322682583, (f"={id}"))	
 	conn.commit()
 	conn.close()
