@@ -108,10 +108,10 @@ def start(message):
 	
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute(f"delete from users where user_id={userid}")
-	cursor.execute(f"insert into users (user_id,coin) values({userid}, 10)")
-	jon = _default_data()
-	jon["build"]["exp"]=0
+	cursor.execute(f"select date from users where user_id={userid}")
+	jonew = cursor.fetchall()
+	jon = jonew[0]
+	jon["build"]["people"]=0
 	jon=json.dumps(jon)
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
