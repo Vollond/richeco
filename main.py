@@ -16,7 +16,7 @@ from telegramcalendar import create_calendar
 import datetime
 from funs import create_task
 from funs import my_task
-#from task2 import my_tasks_cron
+from task2 import my_tasks_cron
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -163,6 +163,7 @@ def default_test(message):
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
+	my_tasks_cron()
 	userid = message.from_user.id
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	if (f_builds ('?',userid, "n", 0)>1):
