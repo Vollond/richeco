@@ -30,7 +30,8 @@ def my_task(userid):
 	now=time.time()
 	cursor.execute(f"select time from tasks where user_id={userid}")
 	task = cursor.fetchall()
-	t_time = task-now
+	print(task[0])
+	t_time = task[0] - now
 	t_time = time.ctime(t_time)
 	conn.commit()
 	conn.close()	
