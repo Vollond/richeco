@@ -32,7 +32,7 @@ def my_task(userid):
 	tasks=[]
 	for task in cursor:
 		t_time = task[0] - now
-		tasks.appendround((t_time))
+		tasks.append(round(t_time))
 	conn.commit()
 	conn.close()
 	print(tasks)
