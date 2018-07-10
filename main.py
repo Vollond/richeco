@@ -455,3 +455,4 @@ def webhook():
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 8443))
 server = Flask(__name__)
+application.listen(environ["PORT"])
