@@ -39,7 +39,7 @@ while (i<9):
 		bot.send_message(user_id, (f"={id}"))	
 	conn.commit()
 	conn.close()
-	time.sleep(70) 	
+	time.sleep(7) 	
 	i+=1 	
 	
 	
