@@ -14,11 +14,11 @@ DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 server = Flask(__name__)
 
-def create_task(userid, time,act):
+def create_task(userid, f_time,act):
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	now=time.time()
-	now+=660
+	now+=f_time
 	future=time.ctime(now)
 	act=json.dumps(act)
 	cursor.execute(f"INSERT INTO tasks (user_id, time, action) VALUES({userid}, {future}, {act}) ")	
