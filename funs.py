@@ -21,7 +21,7 @@ def create_task(userid, f_time,act):
 	now+=f_time
 	future=datetime.datetime.fromtimestamp(now)
 	act=json.dumps(act)
-	cursor.execute(f"INSERT INTO tasks (user_id, time, action) VALUES({userid}, {future}, {act}) ")	
+	cursor.execute(f"INSERT INTO tasks (user_id, time, action) VALUES({userid}, {now}, {act}) ")	
 	conn.commit()
 	conn.close()
 
