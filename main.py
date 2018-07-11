@@ -190,10 +190,11 @@ def default_test(message):
 	population_count =  f_builds ('?',userid, "population growth", 0)
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
-	i=0
+	i=1
 	if (len(m_task)>0):
 		task_str = "Задачи:\n"
 		while (i<len(m_task)):
+		
 			task_str += (f"{m_task[i]}\n")
 			i+=1
 	else:
@@ -203,7 +204,6 @@ def default_test(message):
 	
 	{task_str}
 
-	
 	Постройки: 
 	N-центры = {n_count}
 
