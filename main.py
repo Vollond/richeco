@@ -180,6 +180,8 @@ def default_test(message):
 	n_count =  f_builds ('?',userid,"n",0)
 	workers_count =  f_builds ('?',userid, "workers", 0)
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
+	people_count =  f_builds ('?',userid, "people", 0)
+	population_count =  f_builds ('?',userid, "population growth", 0)
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
 	print (len(m_task))
@@ -195,7 +197,9 @@ def default_test(message):
 	
 	Постройки: 
 	N-центры = {n_count}
-	Жители: 
+	Жители:
+	Прирост населения {population_count}/час
+	Людей: {people_count}
 	Рабочих = {workers_count} 
 	Воинов = {warrior_count}"""),reply_markup=markup)
 	
