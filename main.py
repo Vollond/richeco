@@ -190,7 +190,7 @@ def default_test(message):
 		while (i<len(m_task)):
 			task_str += (f"{m_task[i]}\n")
 			i+=1
-	else 
+	else:
 		task_str=''
 	bot.send_message(message.chat.id, (f"""
 	{task_str}
