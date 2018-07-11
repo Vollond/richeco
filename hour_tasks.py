@@ -27,8 +27,6 @@ def hour_tasks_cron():
 	cursor.execute(f"select user_id from users where id > 0")	
 	for userid in cursor:
 		pop=f_builds ('?', userid[0], "population growth", 0)	
-		#print (pop)
-		bot.send_message(userid[0], (f"люди + {pop}"))
 		
 		food_count = f_builds('?',userid[0], "food", 0)
 		storage_cap = f_builds('?',userid[0], "storage capacity", 0)
