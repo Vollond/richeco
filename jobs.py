@@ -12,7 +12,7 @@ def print_data():
 def update_a():
  	my_tasks_cron()
 
-@sched.scheduled_job('interval', hour=1)
+@sched.scheduled_job('interval', hours=1)
 def update_b():
  	hour_tasks_cron()
 
