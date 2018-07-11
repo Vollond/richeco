@@ -145,8 +145,48 @@ def default_test(message):
 
 @bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
 def default_test(message):
-	t1 = time.time()
 	userid = message.from_user.id
+	
+	
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('Построить','Распределение людей')
+	markup.row('me')
+	bot.send_message(message.chat.id, (f"""
+	:)
+	"""),reply_markup=markup)
+
+@bot.message_handler(func=lambda mess: mess.text=='Распределение людей' and mess.content_type=='text')	
+def default_test(message):		
+	n_count =  f_builds ('?',userid,"n",0)	
+	researchers_count =  f_builds ('?',userid,"researchers",0)	
+	
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('Указать колличество исследователей')
+	markup.row('me')
+	
+	bot.send_message(message.chat.id, (f"""
+	Человек исследуют {researchers_count}/{3}
+	"""),reply_markup=markup)
+	
+@bot.message_handler(func=lambda mess: mess.text=='Указать колличество исследователей' and mess.content_type=='text')	
+def default_test(message):	
+	f_builds ('=',userid,"state", "researchers")	
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('me')
+	
+	bot.send_message(message.chat.id, (f"""
+	Напишите сколько людей вы хотите назначить заниматься наукой?
+	"""),reply_markup=markup)
+
+@bot.message_handler(func=lambda message: funs.f_builds('?',message.chat.id,"state", 0) ==  "researchers")
+def default_test(message):
+	if(int(message.text)<3)
+		f_builds ('=',userid,"researchers",int(message.text))	
+	f_builds ('=',userid,"state", 0)
+	
+	
+@bot.message_handler(func=lambda mess: mess.text=='Построить' and mess.content_type=='text')	
+def default_test(message):	
 	keyboard = types.InlineKeyboardMarkup()
 	n_count =  f_builds ('?',userid,"n",0)
 	n_cost = 100
@@ -157,12 +197,12 @@ def default_test(message):
 	keyboard.add(workers_button)
 	keyboard.add(warrior_button)
 	bot.send_message(message.chat.id, (f"""
-	Построить чет?
+	Построить?
 	Строить N-центр\n за ${n_cost}
 	Строить Рабочих\n за $10
 	Строить Воинов\n за $50
 	"""), reply_markup=keyboard)
-	print(time.time() - t1)
+
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
