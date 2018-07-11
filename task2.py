@@ -24,18 +24,19 @@ def my_tasks_cron():
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	now=time.time()
-	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
-	act=[]
-	for act in cursor:
-		print (act)
-		action = act[0]
-		user_id = act[1]
-		id = act[2]
-		print(action)
-		print(user_id)
-		print(id)
-		cursor.execute(f"delete from tasks where id={id}")
-		bot.send_message(user_id, (f"={id}"))	
-	conn.commit()
-	conn.close()
-	return True 
+	result = cursor.execute(f"select action, user_id, id from tasks where time < {now}")
+	if result.returns_rows:
+		act=[]
+		for act in cursor:
+			print (act)
+			action = act[0]
+			user_id = act[1]
+			id = act[2]
+			print(action)
+			print(user_id)
+			print(id)
+			cursor.execute(f"delete from tasks where id={id}")
+			bot.send_message(user_id, (f"={id}"))	
+		conn.commit()
+		conn.close()
+		return True 
