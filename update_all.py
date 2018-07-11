@@ -20,7 +20,8 @@ from funs import f_builds
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
-
+f_builds('=',userid[0], "food", 10)
+f_builds('=',userid[0], "people", 10)
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()		
