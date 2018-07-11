@@ -17,7 +17,7 @@ import datetime
 from funs import create_task
 from funs import my_task
 from task2 import my_tasks_cron
-start_time = time.time()
+
 
 DATABASE_URL = os.environ['DATABASE_URL']
 bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
@@ -459,7 +459,6 @@ def webhook():
     bot.remove_webhook()
     bot.set_webhook(url="https://richeco.herokuapp.com/bot")
     return "!", 200
-print("--- %s seconds ---" % (time.time() - start_time))
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 8443))
 server = Flask(__name__)
 application.listen(environ["PORT"])
