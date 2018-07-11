@@ -292,33 +292,35 @@ def callback_inline(call):
 				
 		if call.data == "workers":
 			coin =  f_coin ('?',userid, 0)
-			n_count =  f_builds ('?',userid, "workers", 0)
+			work_count =  f_builds ('?',userid, "workers", 0)
 			n_cost=10
-			if int(coin) >= n_cost:
+			p_count =  f_builds ('?',userid, "people", 0)
+			if (int(coin) >= n_cost) and (int(p_count) >= 1):
 				f_coin ('+',userid, - n_cost)
-				n_count =  f_builds ('+',userid,"workers", 1)
+				f_builds ('+',userid,"people", -1)
+				work_count =  f_builds ('+',userid,"workers", 1)
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="workers")
 				keyboard.add(work_button)
-				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} рабочих \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {work_count} рабочих \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет или людей!")
 				
 		if call.data == "warrior":
 			coin =  f_coin ('?',userid, 0)
 			n_count =  f_builds ('?',userid, "warrior", 0)
-			work_count =  f_builds ('?',userid, "workers", 0)
+			p_count =  f_builds ('?',userid, "people", 0)
 			n_cost=50
-			if int(coin) >= n_cost and work_count >= 1 :
+			if int(coin) >= n_cost and p_count >= 1 :
 				f_coin ('+',userid, -n_cost)
-				f_builds ('+',userid,"workers", -1)
+				f_builds ('+',userid,"people", -1)
 				n_count =  f_builds ('+',userid,"warrior", 1)
 				keyboard = types.InlineKeyboardMarkup()
 				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="warrior")
 				keyboard.add(work_button)
 				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} воинов \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
-				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет или людей!")
 
 				
 
