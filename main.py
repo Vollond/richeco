@@ -157,7 +157,8 @@ def default_test(message):
 	"""),reply_markup=markup)
 
 @bot.message_handler(func=lambda mess: mess.text=='Распределение людей' and mess.content_type=='text')	
-def default_test(message):		
+def default_test(message):	
+	userid = message.from_user.id	
 	n_count =  f_builds ('?',userid,"n",0)	
 	researchers_count =  f_builds ('?',userid,"researchers",0)	
 	
