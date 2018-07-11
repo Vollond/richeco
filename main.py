@@ -203,7 +203,6 @@ def default_test(message):
 	👥 {people_count}  🍕{food}  💰{coin} 
 	
 	{task_str}
-
 	Постройки: 
 	N-центры = {n_count}
 
