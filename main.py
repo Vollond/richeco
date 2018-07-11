@@ -185,7 +185,7 @@ def default_test(message):
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
 	i=0
-	if (len(m_task)>0)
+	if (len(m_task)>0):
 		task_str = "Задачи:\n"
 		while (i<len(m_task)):
 			task_str += (f"{m_task[i]}\n")
