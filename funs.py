@@ -35,7 +35,7 @@ def my_task(userid):
 		tasks.append(round(t_time))
 	conn.commit()
 	conn.close()
-	print(tasks)
+	#print(tasks)
 	return tasks
 	
 

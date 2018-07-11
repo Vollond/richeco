@@ -184,7 +184,6 @@ def default_test(message):
 	population_count =  f_builds ('?',userid, "population growth", 0)
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
-	print (len(m_task))
 	i=0
 	if (len(m_task)>0)
 		task_str = "Задачи:\n"
