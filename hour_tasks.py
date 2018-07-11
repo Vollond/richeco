@@ -26,9 +26,9 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()		
 cursor.execute(f"select user_id from users where id > 0")	
 for userid in cursor:
-	pop=f_builds ('?',userid, "population growth", 0)	
+	pop=f_builds ('?',userid[0], "population growth", 0)	
 	print (pop)
-	f_builds('+',userid, "people", pop)
+	f_builds('+',userid[0], "people", pop)
 		
 conn.commit()
 conn.close()
