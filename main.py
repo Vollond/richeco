@@ -172,6 +172,7 @@ def default_test(message):
 	
 @bot.message_handler(func=lambda mess: mess.text=='Указать колличество исследователей' and mess.content_type=='text')	
 def default_test(message):	
+	userid = message.from_user.id
 	f_builds ('=',userid,"state", "researchers")	
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	markup.row('me')
