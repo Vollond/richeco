@@ -29,7 +29,6 @@ def hour_tasks_cron():
 		pop=f_builds ('?', userid[0], "population growth", 0)	
 		#print (pop)
 		bot.send_message(user_id, (f"люди + {pop}"))
-		f_builds('+',userid[0], "people", pop)
 		
 		food_count = f_builds('?',userid[0], "food", 0)
 		storage_cap = f_builds('?',userid[0], "storage capacity", 0)
@@ -37,11 +36,15 @@ def hour_tasks_cron():
 		food_gr= f_builds('?',userid[0], "food growth", 0)
 		food_change = food_gr-(people)*0.1
 		
+		if((people+pop)<storage_cap):
+			f_builds('+',userid[0], "people", pop)
+		else:	
+			f_builds('=',userid[0], "people", storage_cap)
+			
 		if((food_change+food_count)<storage_cap):
 			f_builds('+',userid[0], "food", food_change)
 		else:	
-			f_builds('+',userid[0], "food", storage_cap-food_count)
-		
+			f_builds('=',userid[0], "food", storage_cap)
 
 			
 			
