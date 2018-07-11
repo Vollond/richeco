@@ -25,7 +25,8 @@ def my_tasks_cron():
 	cursor = conn.cursor()
 	now=time.time()
 	result = cursor.execute(f"select action, user_id, id from tasks where time < {now}")
-	if result>0:
+	print(result)
+	if result!=0:
 		act=[]
 		for act in cursor:
 			print (act)
