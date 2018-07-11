@@ -114,7 +114,6 @@ def start(message):
 	jon = jonew
 	print (jon)
 	print(jon[0][0])
-	jon[0][0]["build"]["people"]=0
 	jon[0][0]["build"]["people"]=10
 	jon[0][0]["build"]["population growth"]=1
 	jon[0][0]["build"]["food"]=5
