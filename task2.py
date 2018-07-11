@@ -25,6 +25,7 @@ def my_tasks_cron():
 	cursor = conn.cursor()
 	now=time.time()
 	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
+	del_ids = []
 	for act in cursor:
 		print (act)
 		action = act[0]
@@ -33,8 +34,11 @@ def my_tasks_cron():
 		print(action)
 		print(user_id)
 		print(id)
+		del_ids.append(id)
+		bot.send_message(user_id, (f"={id}"))
+	for id in del_ids:
 		cursor.execute(f"delete from tasks where id={id}")
 		conn.commit()
-		bot.send_message(user_id, (f"={id}"))	
+		
 	conn.close()
 	return True 
