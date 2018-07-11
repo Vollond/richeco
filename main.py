@@ -188,6 +188,7 @@ def default_test(message):
 	
 @bot.message_handler(func=lambda mess: mess.text=='Построить' and mess.content_type=='text')	
 def default_test(message):	
+	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
 	n_count =  f_builds ('?',userid,"n",0)
 	n_cost = 100
