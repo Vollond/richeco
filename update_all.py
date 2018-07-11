@@ -34,10 +34,8 @@ for userid in cursor:
 	jon = jonew
 	print (jon)
 	print(jon[0][0])
-	jon[0][0]["build"]["farm"]=0
-	jon[0][0]["build"]["food growth"]=1
-	jon[0][0]["build"]["storage"]=0
-	jon[0][0]["build"]["storage capacity"]=100
+	jon[0][0]["build"]["people"]=10
+	jon[0][0]["build"]["food"]=10
 	
 	
 	jon=json.dumps(jon[0][0])
