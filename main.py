@@ -199,9 +199,9 @@ def default_test(message):
 			
 		f_builds ('=',userid,"state", 0)
 	else:
-	bot.send_message(message.chat.id, (f"""
-	Напишите ЧИСЛО людей вы хотите назначить заниматься наукой?
-	"""),reply_markup=markup)
+		bot.send_message(message.chat.id, (f"""
+		Напишите ЧИСЛО людей вы хотите назначить заниматься наукой?
+		"""),reply_markup=markup)
 	
 @bot.message_handler(func=lambda mess: mess.text=='Построить' and mess.content_type=='text')	
 def default_test(message):	
