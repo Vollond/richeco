@@ -214,7 +214,7 @@ def default_test(message):
 	
 @bot.message_handler(func=lambda mess: mess.text=='laboratory' and mess.content_type=='text')	
 def default_test(message):
-	print(time.time() - t1)
+	t1 = time.time()
 	userid = message.from_user.id
 	jon = _default_data()
 	jon["build"]["exp"]["+"]=1
