@@ -43,6 +43,7 @@ def hour_tasks_cron():
 			
 		if((food_change+food_count)<storage_cap):
 			f_builds('+',userid[0], "food", food_change)
+			print (food_change)
 		else:	
 			f_builds('=',userid[0], "food", storage_cap)
 
