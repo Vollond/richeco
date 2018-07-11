@@ -183,8 +183,10 @@ def default_test(message):
 
 @bot.message_handler(func=lambda message: funs.f_builds('?',message.chat.id,"state", 0) ==  "researchers")
 def default_test(message):
+	userid = message.from_user.id
 	if(int(message.text)<3):
 		f_builds ('=',userid,"researchers",int(message.text))	
+		f_builds ('+',userid,"people", -int(message.text))	
 	f_builds ('=',userid,"state", 0)
 	
 	
