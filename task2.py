@@ -24,9 +24,10 @@ def my_tasks_cron():
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
 	now=time.time()
-	result = cursor.execute(f"select action, user_id, id from tasks where time < {now}")
-	print(result)
-	if result!=None:
+	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
+	count = cursor.rowcount.
+	print(count)
+	if count>0:
 		act=[]
 		for act in cursor:
 			print (act)
