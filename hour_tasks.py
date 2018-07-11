@@ -26,6 +26,21 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()		
 cursor.execute(f"select user_id from users where id > 0")	
 for userid in cursor:
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+	cursor = conn.cursor()
+	cursor.execute(f"select date from users where user_id={userid}")
+	jonew = cursor.fetchall()
+	jon = jonew
+	print (jon)
+	print(jon[0][0])
+	jon[0][0]["build"]["people"]=10
+	jon[0][0]["build"]["population growth"]=1
+	jon[0][0]["build"]["food"]=5
+	jon=json.dumps(jon[0][0])
+	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+	conn.commit()
+	conn.close()	
+	
 	pop=f_builds ('?', userid[0], "population growth", 0)	
 	print (pop)
 	f_builds('+',userid[0], "people", pop)
