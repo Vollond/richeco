@@ -79,7 +79,7 @@ def start(message):
 	
 @bot.message_handler(commands=['help'])
 def start(message):
-	print(time.time() - t1)
+	t1 = time.time()
 	bot.reply_to(message, """
 	/me
 	""")
