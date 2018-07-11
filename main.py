@@ -8,6 +8,7 @@ import json
 from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
 import time
+import funs
 from funs import f_coin
 from funs import f_builds
 import random
