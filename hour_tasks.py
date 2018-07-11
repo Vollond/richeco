@@ -27,7 +27,7 @@ cursor = conn.cursor()
 cursor.execute(f"select user_id from users where id > 0")	
 for userid in cursor:
 	pop=f_builds ('?', userid[0], "population growth", 0)	
-	print (pop)
+	#print (pop)
 	f_builds('+',userid[0], "people", pop)
 		
 conn.commit()
