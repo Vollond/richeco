@@ -186,13 +186,13 @@ def default_test(message):
 	m_task=my_task(userid)
 	print (len(m_task))
 	i=0
-	task_str = "Задачи:\n"
-	while (i<len(m_task)):
-		task_str += (f"{m_task[i]}\n")
-		i+=1
+	if (len(m_task)>0)
+		task_str = "Задачи:\n"
+		while (i<len(m_task)):
+			task_str += (f"{m_task[i]}\n")
+			i+=1
 	bot.send_message(message.chat.id, (f"""
 	{task_str}
-	
 	Монет: {coin} 
 	
 	Постройки: 
