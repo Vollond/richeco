@@ -22,12 +22,12 @@ bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
 
 
-	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-	cursor = conn.cursor()		
-	cursor.execute(f"select user_id, id from tasks where id > 0")	
-	for userid in cursor:
-		pop=f_builds ('?',userid, "population growth", 0)	
-		f_builds('+',userid, "people", pop)
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cursor = conn.cursor()		
+cursor.execute(f"select user_id, id from tasks where id > 0")	
+for userid in cursor:
+	pop=f_builds ('?',userid, "population growth", 0)	
+	f_builds('+',userid, "people", pop)
 		
-	conn.commit()
-	conn.close()
+conn.commit()
+conn.close()
