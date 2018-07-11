@@ -193,7 +193,7 @@ def default_test(message):
 		change_researchers=-int(message.text)+researchers
 		if((int(message.text))<max_researchers):
 			f_builds ('=',userid,"researchers",int(message.text))	
-			f_builds ('+',userid,"people", change_researchers))	
+			f_builds ('+',userid,"people", change_researchers)	
 		else:	
 			f_builds('=',userid[0], "researchers", max_researchers)
 			
