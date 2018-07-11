@@ -28,7 +28,7 @@ cursor.execute(f"select user_id from users where id > 0")
 for userid in cursor:
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cursor = conn.cursor()
-	cursor.execute(f"select date from users where user_id={userid}")
+	cursor.execute(f"select date from users where user_id={userid[0]}")
 	jonew = cursor.fetchall()
 	jon = jonew
 	print (jon)
