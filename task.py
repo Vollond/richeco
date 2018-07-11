@@ -27,7 +27,6 @@ while (i<9):
 	cursor = conn.cursor()
 	now=time.time()
 	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
-	act = cursor.fetchall()
 	for act in cursor:
 	if(act!=[]):
 		print (act)
