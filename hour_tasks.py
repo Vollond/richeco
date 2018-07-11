@@ -24,7 +24,7 @@ bot = telebot.TeleBot('610980315:AAE494y1vZOwGeNmisevy-3OtcMwJD_JpVs')
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()		
-cursor.execute(f"select user_id, id from users where id > 0")	
+cursor.execute(f"select user_id from users where id > 0")	
 for userid in cursor:
 	pop=f_builds ('?',userid, "population growth", 0)	
 	print (pop)
