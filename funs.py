@@ -87,7 +87,7 @@ def f_builds (op,userid, what, change):
 		jonew = cursor.fetchall()
 		jonew = jonew[0][0]
 		n_count = jonew["build"][(f"{what}")]	
-		jonew["build"][(f"{what}")] = round(change,3)
+		jonew["build"][(f"{what}")] = change
 		n_count = jonew["build"][(f"{what}")]
 		jon=json.dumps(jonew)
 		cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
