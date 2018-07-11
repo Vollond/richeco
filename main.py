@@ -186,6 +186,7 @@ def default_test(message):
 	workers_count =  f_builds ('?',userid, "workers", 0)
 	warrior_count =  f_builds ('?',userid, "warrior", 0)
 	people_count =  round(f_builds ('?',userid, "people", 0),1)
+	people_count =  round(f_builds ('?',userid, "food", 0),1)
 	population_count =  f_builds ('?',userid, "population growth", 0)
 	coin =  f_coin ('?',userid, 0)
 	m_task=my_task(userid)
@@ -198,14 +199,14 @@ def default_test(message):
 	else:
 		task_str=''
 	bot.send_message(message.chat.id, (f"""
+	👥 {people_count}  🍕{food}  💰{coin} 
 	{task_str}
-	Монет: {coin} 
+
 	
 	Постройки: 
 	N-центры = {n_count}
-	Жители:
+
 	Прирост населения {population_count}/час
-	Людей: {people_count}
 	Рабочих = {workers_count} 
 	Воинов = {warrior_count}"""),reply_markup=markup)
 	print(time.time() - t1)
