@@ -5,7 +5,9 @@ from collections import defaultdict
 _default_data = lambda: defaultdict(_default_data)
 import json
 
-
+p=10.0001
+print(round(p,2))
+print('_______')
 print(time.ctime())
 now=time.time()
 print(now)
