@@ -34,8 +34,7 @@ for userid in cursor:
 	jon = jonew
 	print (jon)
 	print(jon[0][0])
-	jon[0][0]["build"]["state"]=0
-	jon[0][0]["build"]["researchers"]=0
+	jon[0][0]["build"]["max_researchers"]=3
 
 	
 	

@@ -167,7 +167,7 @@ def default_test(message):
 	markup.row('me')
 	
 	bot.send_message(message.chat.id, (f"""
-	Человек исследуют {researchers_count}/{3}
+	Человек исследуют {researchers_count}/{max_researchers}
 	"""),reply_markup=markup)
 	
 @bot.message_handler(func=lambda mess: mess.text=='Указать колличество исследователей' and mess.content_type=='text')	
@@ -184,11 +184,24 @@ def default_test(message):
 @bot.message_handler(func=lambda message: funs.f_builds('?',message.chat.id,"state", 0) ==  "researchers")
 def default_test(message):
 	userid = message.from_user.id
-	if(int(message.text)<3):
-		f_builds ('=',userid,"researchers",int(message.text))	
-		f_builds ('+',userid,"people", -int(message.text))	
-	f_builds ('=',userid,"state", 0)
-	
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('me')
+	if(message.text.isdigit):
+		max_researchers = f_builds ('?',userid,"max_researchers",0)
+		researchers = f_builds ('?',userid,"researchers",0)
+		
+		change_researchers=-int(message.text)+researchers
+		if((int(message.text)<max_researchers):
+			f_builds ('=',userid,"researchers",int(message.text))	
+			f_builds ('+',userid,"people", change_researchers))	
+		else:	
+			f_builds('=',userid[0], "researchers", max_researchers)
+			
+		f_builds ('=',userid,"state", 0)
+	else:
+	bot.send_message(message.chat.id, (f"""
+	Напишите ЧИСЛО людей вы хотите назначить заниматься наукой?
+	"""),reply_markup=markup)
 	
 @bot.message_handler(func=lambda mess: mess.text=='Построить' and mess.content_type=='text')	
 def default_test(message):	
