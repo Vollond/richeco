@@ -79,9 +79,11 @@ def start(message):
 	
 @bot.message_handler(commands=['help'])
 def start(message):
+	print(time.time() - t1)
     bot.reply_to(message, """
 	/me
 	""")
+	print(time.time() - t1)
 
 @bot.message_handler(commands=['new'])
 def start(message):
@@ -143,6 +145,7 @@ def default_test(message):
 
 @bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
 def default_test(message):
+	t1 = time.time()
 	userid = message.from_user.id
 	keyboard = types.InlineKeyboardMarkup()
 	n_count =  f_builds ('?',userid,"n",0)
@@ -158,7 +161,8 @@ def default_test(message):
 	Строить N-центр\n за ${n_cost}
 	Строить Рабочих\n за $10
 	Строить Воинов\n за $50
-	"""), reply_markup=keyboard)	
+	"""), reply_markup=keyboard)
+	print(time.time() - t1)
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
@@ -210,6 +214,7 @@ def default_test(message):
 	
 @bot.message_handler(func=lambda mess: mess.text=='laboratory' and mess.content_type=='text')	
 def default_test(message):
+	print(time.time() - t1)
 	userid = message.from_user.id
 	jon = _default_data()
 	jon["build"]["exp"]["+"]=1
@@ -223,6 +228,7 @@ def default_test(message):
 	
 	
 	"""),reply_markup=markup)
+	print(time.time() - t1)
 	
 
 
