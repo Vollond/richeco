@@ -162,6 +162,7 @@ def default_test(message):
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
 def default_test(message):
+	t1 = time.time()
 	my_tasks_cron()
 	userid = message.from_user.id
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -203,6 +204,8 @@ def default_test(message):
 	Людей: {people_count}
 	Рабочих = {workers_count} 
 	Воинов = {warrior_count}"""),reply_markup=markup)
+	print(time.time() - t1)
+
 	
 	
 @bot.message_handler(func=lambda mess: mess.text=='laboratory' and mess.content_type=='text')	
