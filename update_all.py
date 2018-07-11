@@ -34,7 +34,12 @@ for userid in cursor:
 	jon = jonew
 	print (jon)
 	print(jon[0][0])
-	jon[0][0]["build"]["population growth"]=0.3
+	jon[0][0]["build"]["farm"]=0
+	jon[0][0]["build"]["food growth"]=1
+	jon[0][0]["build"]["storage"]=0
+	jon[0][0]["build"]["storage capacity"]=100
+	
+	
 	jon=json.dumps(jon[0][0])
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
