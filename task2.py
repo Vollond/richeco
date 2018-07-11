@@ -25,23 +25,17 @@ def my_tasks_cron():
 	cursor = conn.cursor()
 	now=time.time()
 	cursor.execute(f"select action, user_id, id from tasks where time < {now}")
-	count = cursor.rowcount
-	jonew = cursor.fetchall()
-	print(count)
-	print(jonew)
-	if count>0:
-		cursor.execute(f"select action, user_id, id from tasks where time < {now}")
-		act=[]
-		for act in cursor:
-			print (act)
-			action = act[0]
-			user_id = act[1]
-			id = act[2]
-			print(action)
-			print(user_id)
-			print(id)
-			cursor.execute(f"delete from tasks where id={id}")
-			bot.send_message(user_id, (f"={id}"))	
-		conn.commit()
-		conn.close()
-		
+	act = cursor.fetchall() ##Сделать цикл на все
+	if(act!=[]):
+		print (act)
+		action = act[0][0]
+		user_id = act[0][1]
+		id = act[0][2]
+		print(action)
+		print(user_id)
+		print(id)
+		cursor.execute(f"delete from tasks where id={id}")
+		bot.send_message(user_id, (f"={id}"))	
+	conn.commit()
+	conn.close()
+	return True 
