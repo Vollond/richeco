@@ -8,9 +8,9 @@ sched = BlockingScheduler()
 def print_data():
 	print("Have a good day!")
 '''
-@sched.scheduled_job('interval', minutes=1)
+@sched.scheduled_job('interval', minutes=100)
 def update_a():
- #	my_tasks_cron()
+ 	my_tasks_cron()
 
 @sched.scheduled_job('interval', hours=1)
 def update_b():
