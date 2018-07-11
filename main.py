@@ -200,6 +200,7 @@ def default_test(message):
 		task_str=''
 	bot.send_message(message.chat.id, (f"""
 	👥 {people_count}  🍕{food}  💰{coin} 
+	
 	{task_str}
 
 	

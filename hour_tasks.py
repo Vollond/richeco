@@ -35,12 +35,12 @@ def hour_tasks_cron():
 		food_change = food_gr-(people)*0.1
 		
 		if((people+pop)<storage_cap):
-			f_builds('+',userid[0], "people", round(pop,2))
+			f_builds('+',userid[0], "people", pop)
 		else:	
 			f_builds('=',userid[0], "people", storage_cap)
 			
 		if((food_change+food_count)<storage_cap):
-			f_builds('+',userid[0], "food", round(food_change,2))
+			f_builds('+',userid[0], "food", food_change)
 			print (food_change)
 		else:	
 			f_builds('=',userid[0], "food", storage_cap)
