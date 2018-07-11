@@ -35,7 +35,7 @@ def my_tasks_cron():
 			print(user_id)
 			print(id)
 			cursor.execute(f"delete from tasks where id={id}")
+			conn.commit()
 			bot.send_message(user_id, (f"={id}"))	
-	conn.commit()
 	conn.close()
 	return True 
