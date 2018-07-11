@@ -105,7 +105,7 @@ def start(message):
 	conn.commit()
 	conn.close()
 	
-@bot.message_handler(commands=['upd']) #Нужно сделать добавление ячеек
+@bot.message_handler(commands=['upd']) 
 def start(message):
 	userid = message.from_user.id
 	
