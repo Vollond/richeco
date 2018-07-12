@@ -186,7 +186,7 @@ def default_test(message):
 	userid = message.from_user.id
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	markup.row('me')
-	if(message.text.isdigit):
+	if((message.text).isdigit):
 		max_researchers = f_builds ('?',userid,"max_researchers",0)
 		researchers = f_builds ('?',userid,"researchers",0)
 		
