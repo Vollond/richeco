@@ -191,13 +191,17 @@ def default_test(message):
 		researchers = f_builds ('?',userid,"researchers",0)
 		
 		change_researchers=-int(message.text)+researchers
-		if((int(message.text))<max_researchers):
+		if((int(message.text))<=max_researchers):
 			f_builds ('=',userid,"researchers",int(message.text))	
 			f_builds ('+',userid,"people", change_researchers)	
+			f_builds ('=',userid,"state", 0)
 		else:	
-			f_builds('=',userid, "researchers", max_researchers)
+			bot.send_message(message.chat.id, (f"""
+			Вы не можете назначить больше {max_researchers}
+			"""),reply_markup=markup)
 			
-		f_builds ('=',userid,"state", 0)
+			
+		
 	else:
 		bot.send_message(message.chat.id, (f"""
 		Напишите ЧИСЛО людей вы хотите назначить заниматься наукой?
