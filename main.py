@@ -190,10 +190,10 @@ def default_test(message):
 		max_researchers = f_builds ('?',userid,"max_researchers",0)
 		researchers = f_builds ('?',userid,"researchers",0)
 		
-		change_researchers=-int(message.text)+researchers
+		change_people=researchers-int(message.text)
 		if((int(message.text))<=max_researchers):
 			f_builds ('=',userid,"researchers",int(message.text))	
-			f_builds ('+',userid,"people", change_researchers)	
+			f_builds ('+',userid,"people", people)	
 			f_builds ('=',userid,"state", 0)
 		else:	
 			bot.send_message(message.chat.id, (f"""
