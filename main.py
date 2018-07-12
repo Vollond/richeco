@@ -195,7 +195,7 @@ def default_test(message):
 			f_builds ('=',userid,"researchers",int(message.text))	
 			f_builds ('+',userid,"people", change_researchers)	
 		else:	
-			f_builds('=',userid[0], "researchers", max_researchers)
+			f_builds('=',userid, "researchers", max_researchers)
 			
 		f_builds ('=',userid,"state", 0)
 	else:
