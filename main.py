@@ -161,7 +161,7 @@ def default_test(message):
 	userid = message.from_user.id	
 	n_count =  f_builds ('?',userid,"n",0)	
 	researchers_count =  f_builds ('?',userid,"researchers",0)	
-	
+	max_researchers =  f_builds ('?',userid,"max_researchers",0)	
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	markup.row('Указать колличество исследователей')
 	markup.row('me')
