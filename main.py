@@ -144,6 +144,11 @@ def default_test(message):
 	keyboard.add(unknown_place_button)
 	bot.send_message(message.chat.id, "Работать", reply_markup=keyboard)		
 
+	
+@bot.message_handler(func=lambda mess: mess.text=='Город' and mess.content_type=='text')	
+def default_test(message):	
+	
+	
 @bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
 def default_test(message):
 	userid = message.from_user.id
@@ -167,7 +172,7 @@ def default_test(message):
 	Строить Воинов\n за $50
 	"""), reply_markup=keyboard)
 	bot.send_message(message.chat.id, (f"""
-	"""),reply_markup=markup)
+	 """),reply_markup=markup)
 
 @bot.message_handler(func=lambda mess: mess.text=='Распределение людей' and mess.content_type=='text')	
 def default_test(message):	
