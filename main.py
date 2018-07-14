@@ -179,8 +179,7 @@ def default_test(message):
 def default_test(message):
 	userid = message.from_user.id
 	
-	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	markup.row('me')
+
 	
 	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
@@ -193,8 +192,24 @@ def default_test(message):
 	Построить?
 	Строить N-центр\n за $100
 	"""), reply_markup=keyboard)
+
+@bot.message_handler(func=lambda mess: mess.text=='Ферма' and mess.content_type=='text')	
+def default_test(message):
+	userid = message.from_user.id
+	
+
+	
+	keyboard = types.InlineKeyboardMarkup()
+	work_button = types.InlineKeyboardButton(text=(f"Ферма"), callback_data="farm")
+	keyboard.add(work_button)
+	
 	bot.send_message(message.chat.id, (f"""
-	 """),reply_markup=markup)
+	Поля засеяные коровами и картошкой. Твоим людям нужно питаться!
+	
+	Построить?
+	Строить Ферму за $50
+	"""), reply_markup=keyboard)
+ 
 	 
 @bot.message_handler(func=lambda mess: mess.text=='Распределение людей' and mess.content_type=='text')	
 def default_test(message):	
@@ -376,7 +391,20 @@ def callback_inline(call):
 				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} N-центров \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
 			else:
 				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
-				
+		if call.data == "farm":
+			coin =  f_coin ('?',userid, 0)
+			n_count =  f_builds ('?',userid, "n", 0)
+			n_cost=50
+			if int(coin) >= n_cost:
+				f_coin ('+',userid, - n_cost)
+				n_count =  f_builds ('+',userid,"farm", 1)
+				keyboard = types.InlineKeyboardMarkup()
+				work_button = types.InlineKeyboardButton(text=(f"Строим еще за {n_cost}?"), callback_data="farm")
+				keyboard.add(work_button)
+				bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text=(f"Есть {n_count} ферм \nСтроим еще за {n_cost}?"),reply_markup=keyboard)
+			else:
+				bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Не хватает монет!")
+							
 		if call.data == "workers":
 			coin =  f_coin ('?',userid, 0)
 			work_count =  f_builds ('?',userid, "workers", 0)
