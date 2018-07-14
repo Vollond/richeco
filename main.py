@@ -266,7 +266,7 @@ def default_test(message):
 	else:
 		research="xxxx"
 	markup.row('work', (f"{exped}"),'laboratory')
-	markup.row('me', 'build', (f"{research}"))
+	markup.row('me', 'Город', (f"{research}"))
 	userid = message.from_user.id
 	coin =  f_coin ('?',userid, 0)
 	n_count =  f_builds ('?',userid,"n",0)
