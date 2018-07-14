@@ -152,8 +152,20 @@ def default_test(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	markup.row('Построить','Распределение людей')
 	markup.row('me')
+	
+	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
+	workers_button = types.InlineKeyboardButton(text=(f"Рабочих"), callback_data="workers")
+	warrior_button = types.InlineKeyboardButton(text=(f"Воинов"), callback_data="warrior")
+	keyboard.add(work_button)
+	keyboard.add(workers_button)
+	keyboard.add(warrior_button)
 	bot.send_message(message.chat.id, (f"""
-	:)
+	Построить?
+	Строить N-центр\n за $100
+	Строить Рабочих\n за $10
+	Строить Воинов\n за $50
+	"""), reply_markup=keyboard)
+	bot.send_message(message.chat.id, (f"""
 	"""),reply_markup=markup)
 
 @bot.message_handler(func=lambda mess: mess.text=='Распределение людей' and mess.content_type=='text')	
@@ -207,24 +219,7 @@ def default_test(message):
 		Напишите ЧИСЛО людей вы хотите назначить заниматься наукой?
 		"""),reply_markup=markup)
 	
-@bot.message_handler(func=lambda mess: mess.text=='Построить' and mess.content_type=='text')	
-def default_test(message):	
-	userid = message.from_user.id
-	keyboard = types.InlineKeyboardMarkup()
-	n_count =  f_builds ('?',userid,"n",0)
-	n_cost = 100
-	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
-	workers_button = types.InlineKeyboardButton(text=(f"Рабочих"), callback_data="workers")
-	warrior_button = types.InlineKeyboardButton(text=(f"Воинов"), callback_data="warrior")
-	keyboard.add(work_button)
-	keyboard.add(workers_button)
-	keyboard.add(warrior_button)
-	bot.send_message(message.chat.id, (f"""
-	Построить?
-	Строить N-центр\n за ${n_cost}
-	Строить Рабочих\n за $10
-	Строить Воинов\n за $50
-	"""), reply_markup=keyboard)
+
 
 
 @bot.message_handler(func=lambda mess: mess.text=='me' and mess.content_type=='text')	
