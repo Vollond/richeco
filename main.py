@@ -153,6 +153,7 @@ def default_test(message):
 	markup.row('Построить','Распределение людей')
 	markup.row('me')
 	
+	keyboard = types.InlineKeyboardMarkup()
 	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
 	workers_button = types.InlineKeyboardButton(text=(f"Рабочих"), callback_data="workers")
 	warrior_button = types.InlineKeyboardButton(text=(f"Воинов"), callback_data="warrior")
