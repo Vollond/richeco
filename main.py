@@ -151,8 +151,7 @@ def default_test(message):
 	markup.row('N-центр', 'Казармы')
 	markup.row('Мастерская', 'Ферма', 'Шахта')
 	markup.row('me')
-	bot.send_message(message.chat.id, (f"""
-	 """),reply_markup=markup)
+	bot.send_message(message.chat.id, (f"  "),reply_markup=markup)
 	
 @bot.message_handler(func=lambda mess: mess.text=='Казармы' and mess.content_type=='text')	
 def default_test(message):
