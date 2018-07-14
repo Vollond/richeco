@@ -147,33 +147,51 @@ def default_test(message):
 	
 @bot.message_handler(func=lambda mess: mess.text=='Город' and mess.content_type=='text')	
 def default_test(message):	
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('N-центр', 'Казармы')
+	markup.row('Мастерская', 'Ферма', 'Шахта')
+	markup.row('me')
 	
-	
-@bot.message_handler(func=lambda mess: mess.text=='build' and mess.content_type=='text')	
+@bot.message_handler(func=lambda mess: mess.text=='Казармы' and mess.content_type=='text')	
 def default_test(message):
 	userid = message.from_user.id
 	
 	
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	markup.row('Построить','Распределение людей')
+	markup.row('Обучить','Распределение людей')
 	markup.row('me')
 	
 	keyboard = types.InlineKeyboardMarkup()
-	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
 	workers_button = types.InlineKeyboardButton(text=(f"Рабочих"), callback_data="workers")
 	warrior_button = types.InlineKeyboardButton(text=(f"Воинов"), callback_data="warrior")
-	keyboard.add(work_button)
 	keyboard.add(workers_button)
 	keyboard.add(warrior_button)
 	bot.send_message(message.chat.id, (f"""
-	Построить?
-	Строить N-центр\n за $100
+	Обучить?
 	Строить Рабочих\n за $10
 	Строить Воинов\n за $50
 	"""), reply_markup=keyboard)
 	bot.send_message(message.chat.id, (f"""
 	 """),reply_markup=markup)
-
+	 
+@bot.message_handler(func=lambda mess: mess.text=='N-центр' and mess.content_type=='text')	
+def default_test(message):
+	userid = message.from_user.id
+	
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	markup.row('me')
+	
+	keyboard = types.InlineKeyboardMarkup()
+	work_button = types.InlineKeyboardButton(text=(f"N-центр"), callback_data="N")
+	keyboard.add(work_button)
+	
+	bot.send_message(message.chat.id, (f"""
+	Построить?
+	Строить N-центр\n за $100
+	"""), reply_markup=keyboard)
+	bot.send_message(message.chat.id, (f"""
+	 """),reply_markup=markup)
+	 
 @bot.message_handler(func=lambda mess: mess.text=='Распределение людей' and mess.content_type=='text')	
 def default_test(message):	
 	userid = message.from_user.id	
