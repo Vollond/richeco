@@ -186,6 +186,9 @@ def default_test(message):
 	keyboard.add(work_button)
 	
 	bot.send_message(message.chat.id, (f"""
+	Постройка в стиле буквы "N". 
+	Здесь лучшие умы города ломают свои головы ради научных изобретений.
+	
 	Построить?
 	Строить N-центр\n за $100
 	"""), reply_markup=keyboard)
