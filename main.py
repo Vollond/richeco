@@ -148,8 +148,8 @@ def default_test(message):
 @bot.message_handler(func=lambda mess: mess.text=='Город' and mess.content_type=='text')	
 def default_test(message):	
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-	markup.row('N-центр', 'Казармы')
-	markup.row('Мастерская', 'Ферма', 'Шахта')
+	markup.row('🕋 N-центр', '🏰 Казармы','🏭 Мастерская')
+	markup.row('🗻 Шахта', '🏡 Ферма', '🏚 Склад')
 	markup.row('me')
 	bot.send_message(message.chat.id, (f"Вы оглядываете город с высоты птичьего полета (нет)"),reply_markup=markup)
 	
