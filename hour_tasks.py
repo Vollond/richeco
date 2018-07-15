@@ -51,13 +51,14 @@ def hour_tasks_cron():
 		cof=researchers/max_researchers
 		n = f_builds('?',userid[0], "n", 0)
 		lvl_exp = random.randint(1,2)
-		if (random.randint(1,100)<(5*cof)):
+		rand = (random.randint(1,100))
+		if (rand<(5*cof)):
 			n=n+1
 			break
-		if((random.randint(1,100)<(20*cof)):
+		if(rand<(20*cof)):
 			exp(n,3)
 			break			
-		elif((random.randint(1,100)<(50*cof)):
+		elif(rand<(50*cof)):
 			exp(n,2)
 			break	
 		else:
