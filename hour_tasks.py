@@ -56,13 +56,13 @@ def hour_tasks_cron():
 			n=n+1
 			break
 		if(rand<(20*cof)):
-			exp(n,3)
+			f_exp(n,3)
 			break			
 		elif(rand<(50*cof)):
-			exp(n,2)
+			f_exp(n,2)
 			break	
 		else:
-			exp(n,1)
+			f_exp(n,1)
 			break
 			
 			
