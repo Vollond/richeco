@@ -35,10 +35,9 @@ for userid in cursor:
 	print (jon)
 	print(jon[0][0])
 	jon[0][0]["build"]["max_researchers"]=3
+	jon[0][0]["build"]["exp"]="1"
 	jon[0][0]["build"]["exp"]["1"]=0
-	jon[0][0]["build"]["exp"]["2"]=0
-	jon[0][0]["build"]["exp"]["3"]=0
-	jon[0][0]["build"]["exp"]["4"]=0
+
 	
 	jon=json.dumps(jon[0][0])
 	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
