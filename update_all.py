@@ -33,9 +33,9 @@ for userid in cursor:
 	jonew = cursor.fetchall()
 	jon = jonew
 	print (jon)
-	print(jon[0][0])
-	jon[0][0]["build"]["max_researchers"]=3
-	jon[0][0][0]["exp"]["a"]=0
+	print(jon[0][0]["build"])
+	print(jon[0][0]["build"]["exp"])
+	jon[0][0]["build"]["exp"]["1"]=0
 
 	
 	jon=json.dumps(jon[0][0])
