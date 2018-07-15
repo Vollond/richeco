@@ -35,7 +35,6 @@ for userid in cursor:
 	print (jon)
 	print(jon[0][0])
 	jon[0][0]["build"]["max_researchers"]=3
-	jon[0][0]["build"]["exp"]="1"
 	jon[0][0]["build"]["exp"]["1"]=0
 
 	
