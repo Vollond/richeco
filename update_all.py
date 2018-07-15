@@ -34,14 +34,11 @@ for userid in cursor:
 	jon = jonew
 	print (jon)
 	print(jon[0][0]["build"])
-	jon[0][0]["build"].update({'exp': {'1': 0,'2': 0}})
+	jon[0][0]["build"].update({'exp': {'1': 0,'2': 0,'3': 0,'4': 0}})
 	print(jon[0][0]["build"])
-	jon["build"].pop('exp')
-	jon["build"]["exp"]["1"]=0
-	jon=json.dumps(jon)
-	print(jon[0][0]["build"])
+
 	jon=json.dumps(jon[0][0])
-	#cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+	cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
 	conn.commit()
 	conn.close()	
 		
