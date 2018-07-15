@@ -27,10 +27,11 @@ def new():
 	
 jon=new()
 print (jon)
-
+jon["build"].update({'exp': {'1': 0,'2': 0}})
+print (jon)
 print ("22222222")
-jon["build"].pop('exp')
-jon["build"]["exp"]["1"]=0
+#jon["build"].pop('exp')
+#jon["build"]["exp"]["1"]=0
 jon=json.dumps(jon)
 print (jon)
 

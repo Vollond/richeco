@@ -34,15 +34,7 @@ for userid in cursor:
 	jon = jonew
 	print (jon)
 	print(jon[0][0]["build"])
-	print(jon[0][0]["build"]["exp"])
-	print(jon[0][0]["build"].pop('exp'))
-	print(jon[0][0]["build"])
-	jon[0][0]["build"]['exp']=["1"]
-	print(jon[0][0]["build"])
-	jon[0][0]["build"]['exp']["1"]=0
-	print(jon[0][0]["build"])
-	jon[0][0]["build"]["exp"]["3"]=0
-	jon[0][0]["build"]["exp"]["4"]=0
+	jon[0][0]["build"].update({'exp': {'1': 0,'2': 0}})
 	print(jon[0][0]["build"])
 	jon["build"].pop('exp')
 	jon["build"]["exp"]["1"]=0
