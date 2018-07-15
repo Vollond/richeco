@@ -35,7 +35,7 @@ for userid in cursor:
 	print (jon)
 	print(jon[0][0]["build"])
 	print(jon[0][0]["build"]["exp"])
-	jon[0][0]["build"]["exp"]["1"]=0
+	jon[0][0]["build"]["exp"]="1"
 
 	
 	jon=json.dumps(jon[0][0])

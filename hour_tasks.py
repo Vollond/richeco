@@ -51,7 +51,7 @@ def hour_tasks_cron():
 		cof=researchers/max_researchers
 		n = f_builds('?',userid[0], "n", 0)
 		lvl_exp = random.randint(1,2)
-		rand = (random.randint(1,100))
+		rand = random.randint(1,100)
 		if (rand<(5*cof)):
 			n=n+1
 			break
