@@ -95,4 +95,29 @@ def f_builds (op,userid, what, change):
 		conn.close()	
 	return n_count
 	
+def f_exp (op,userid, what, change):
+	if op == '?':
+		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+		cursor = conn.cursor()
+		cursor.execute(f"select date from users where user_id={userid}")
+		jonew = cursor.fetchall()
+		jonew = jonew[0][0]
+		n_count = jonew["build"]["exp"][(f"{what}")]
+		conn.commit()
+		conn.close()
+	if op == '+':
+		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+		cursor = conn.cursor()
+		cursor.execute(f"select date from users where user_id={userid}")
+		jonew = cursor.fetchall()
+		jonew = jonew[0][0]
+		n_count = jonew["build"]["exp"][(f"{what}")]
+		jonew["build"][(f"{what}")] = round(n_count + change,3)
+		n_count = jonew["build"]["exp"][(f"{what}")]
+		jon=json.dumps(jonew)
+		cursor.execute(f"UPDATE users SET date = '{jon}' WHERE user_id={userid}")
+		conn.commit()
+		conn.close()	
+	return n_count	
+	
 	

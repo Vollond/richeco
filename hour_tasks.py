@@ -44,7 +44,25 @@ def hour_tasks_cron():
 			print (food_change)
 		else:	
 			f_builds('=',userid[0], "food", storage_cap)
-
+			
+			
+		researchers = f_builds('?',userid[0], "researchers", 0)
+		max_researchers = f_builds('?',userid[0], "max_researchers", 0)
+		cof=researchers/max_researchers
+		n = f_builds('?',userid[0], "n", 0)
+		lvl_exp = random.randint(1,2)
+		if (random.randint(1,100)<(5*cof))
+			n=n+1
+			break
+		if((random.randint(1,100)<(20*cof))
+			exp(n,3)
+			break			
+		elif((random.randint(1,100)<(50*cof))
+			exp(n,2)
+			break	
+		else
+			exp(n,1)
+			break
 			
 			
 	conn.commit()
