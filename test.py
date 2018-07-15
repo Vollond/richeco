@@ -30,7 +30,6 @@ print (jon)
 
 print ("22222222")
 print(jon["build"].pop('exp'))
-print (jon)
 jon["build"]["exp"]["1"]=0
 jon=json.dumps(jon)
 print (jon)
