@@ -36,6 +36,7 @@ for userid in cursor:
 	print(jon[0][0]["build"])
 	print(jon[0][0]["build"]["exp"])
 	jon[0][0]["build"].pop('exp')
+	print(jon[0][0]["build"])
 	jon[0][0]["build"]["exp"]["1"]=0
 	jon[0][0]["build"]["exp"]["2"]=0
 	jon[0][0]["build"]["exp"]["3"]=0
